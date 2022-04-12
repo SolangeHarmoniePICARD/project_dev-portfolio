@@ -11,7 +11,7 @@
 <div>
     <?php foreach($projects as $project){ ?>
         <div>
-            <?= $project['project_title'] ?> 
+            <?= $project['project_title'] ?> || <a href="handler_project-delete.php?project_id=<?= $project['project_id'] ?>">Delete</a>
         </div>
     <?php } ?>
 </div>
