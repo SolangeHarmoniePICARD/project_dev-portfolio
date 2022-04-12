@@ -12,3 +12,6 @@
     $query->bindValue(':project_description', $project_description, PDO::PARAM_STR);
     $query->execute();
 
+    // Redirection
+    echo '<div>Project added.</div>';
+    echo '<div><a href="index.php"><button>Back</button></a></div>';
