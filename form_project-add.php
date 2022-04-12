@@ -1,4 +1,4 @@
-<?php include 'header.php' ?>
+<?php include 'include_header.php' ?>
 
 <form action="handler_project-add.php" method="post">
     <div>
@@ -16,4 +16,4 @@
 </form>
 
 
-<?php include 'footer.php' ?>
+<?php include 'include_footer.php' ?>

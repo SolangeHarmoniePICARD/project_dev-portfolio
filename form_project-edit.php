@@ -26,7 +26,7 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
 
 ?>
 
-<?php include 'header.php' ?>
+<?php include 'include_header.php' ?>
 
 <form action="handler_project-edit.php" method="post">
     <input type="hidden" name="project_id" value='<?= $result['project_id'] ?>'>
@@ -44,4 +44,4 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     </div>
 </form>
 
-<?php include 'footer.php' ?>
+<?php include 'include_footer.php' ?>

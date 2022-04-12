@@ -6,7 +6,7 @@
     $projects = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<?php include 'header.php' ?>
+<?php include 'include_header.php' ?>
 
 <div>
     <?php foreach($projects as $project){ ?>
@@ -23,4 +23,4 @@
 </div>
 
 
-<?php include 'footer.php' ?>
+<?php include 'include_footer.php' ?>
