@@ -7,19 +7,12 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 DROP TABLE IF EXISTS `table_projects`;
 CREATE TABLE `table_projects` (
-  `project_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL AUTO_INCREMENT,
   `project_title` varchar(255) NOT NULL,
-  `project_description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf32;
+  `project_description` text NOT NULL,
+  PRIMARY KEY (`project_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `table_users`;
-CREATE TABLE `table_users` (
-  `user_id` int(11) NOT NULL,
-  `user_username` varchar(255) NOT NULL,
-  `user_password` varchar(255) NOT NULL,
-  `user_email` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf32;
+-- 2022-04-12 19:59:56
 
-
--- 2022-04-12 19:14:43

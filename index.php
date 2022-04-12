@@ -1,6 +1,6 @@
 <?php include 'header.php' ?>
 
-<form action="" method="post">
+<form action="handler_project-add.php" method="post">
     <div>
         <label for="input_title">Title: </label>
         <input type="text" id="input_title" name="data_title">
