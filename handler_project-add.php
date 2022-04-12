@@ -1,8 +1,8 @@
 <?php
 
-    // Storing data in variables
-    $project_title = $_POST['data_title'];
-    $project_description = $_POST['data_description'];
+    // Data cleaning & storing in variables
+    $project_title = strip_tags($_POST['data_title']);
+    $project_description = strip_tags($_POST['data_description']);
 
     // Data insertion into the database
     require_once('db_connection.php');
