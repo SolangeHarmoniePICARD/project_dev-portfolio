@@ -20,10 +20,10 @@ if(isset($_POST['data_title']) && !empty($_POST['data_title'])
 
     // Redirection
     echo '<div>Project modified.</div>';
-    echo '<div><a href="index.php"><button>Back</button></a></div>';
+    echo '<div><a href="view_back-home.php"><button>Back</button></a></div>';
 
 //If the form fields are empty
 } else {
     echo "Complete all fields. ";
-    echo '<div><a href="index.php"><button>Back</button></a></div>';
+    echo '<div><a href="view_back-home.php"><button>Back</button></a></div>';
  }

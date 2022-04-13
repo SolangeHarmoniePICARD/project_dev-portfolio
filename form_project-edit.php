@@ -15,13 +15,13 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
         echo '<div>Ok, you can edit this project.</div>';
     } else {
         echo '<div>This ID doesn\'t exist.</div>';
-        echo '<div><a href="index.php"><button>Back</button></a></div>';
+        echo '<div><a href="view_back-home.php"><button>Back</button></a></div>';
     }
 
 //If the form fields are empty   
 } else {
     echo '<div>URL is not valid...</div>'; 
-    echo '<div><a href="index.php"><button>Back</button></a></div>';
+    echo '<div><a href="view_back-home.php"><button>Back</button></a></div>';
 }
 
 ?>
