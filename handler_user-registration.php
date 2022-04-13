@@ -1,4 +1,9 @@
 <?php
+// Verifying form fields
+if(isset($_POST['data_username']) && !empty($_POST['data_username']) 
+&& isset($_POST['data_email']) && !empty($_POST['data_email']) 
+&& isset($_POST['data_password']) && !empty($_POST['data_password']) 
+&& isset($_POST['data_pswd-confirmation']) && !empty($_POST['data_pswd-confirmation'])){
     // Check if password and confirmation matches
     if ($_POST['data_password'] == $_POST['data_pswd-confirmation']) {
         // Data cleaning and storage in database
@@ -14,7 +19,13 @@
         $query->bindValue(':user_password', $user_encrypted_password, PDO::PARAM_STR);
         $query->bindValue(':user_email', $user_email, PDO::PARAM_STR);
         $query->execute();
+        // Redirection
         echo 'Success! </br> <a href="index.php"><button>Back</button></a>';
+    //If passwords don\'t match :)
     } else {
         echo 'Passwords don\'t match.'; 
     }
+//If the form fields are empty
+}else{
+    echo 'Complete all form fields.';
+}
