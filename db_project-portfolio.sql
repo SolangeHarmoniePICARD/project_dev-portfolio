@@ -14,5 +14,14 @@ CREATE TABLE `table_projects` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- 2022-04-12 19:59:56
+DROP TABLE IF EXISTS `table_users`;
+CREATE TABLE `table_users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_username` varchar(255) NOT NULL,
+  `user_password` varchar(255) NOT NULL,
+  `user_email` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+-- 2022-04-13 05:13:59
