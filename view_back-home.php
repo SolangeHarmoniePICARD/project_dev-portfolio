@@ -1,9 +1,15 @@
 <?php
+session_start();
+if($_SESSION['username']){
     require_once('db_connection.php');
     $sql = 'SELECT * FROM `table_projects`';
     $query = $db->prepare($sql);
     $query->execute();
     $projects = $query->fetchAll(PDO::FETCH_ASSOC);
+// If bad authentification
+} else {
+    echo "Username or password are incorrect. ";
+}
 ?>
 
 <?php include 'include_header.php' ?>
@@ -19,6 +25,11 @@
 <div>
     <a href="form_project-add.php">
         <button>Add project</button>
+    </a>
+</div>
+<div>
+    <a href="handler_user-disconnect.php">
+        <button>Log out</button>
     </a>
 </div>
 
