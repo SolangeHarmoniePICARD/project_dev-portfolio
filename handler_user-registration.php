@@ -11,21 +11,32 @@ if(isset($_POST['data_username']) && !empty($_POST['data_username'])
         $user_email = strip_tags($_POST['data_email']);
         $user_unencrypted_password = strip_tags($_POST['data_password']);
         $user_encrypted_password = password_hash($user_unencrypted_password , PASSWORD_DEFAULT);
-        // Data insertion into the database
+        // Checking if user already exist...
         require_once('db_connection.php');
-        $sql = 'INSERT INTO table_users(`user_username`, `user_password`, `user_email`) VALUES(:user_username, :user_password, :user_email)';
+        $sql = 'SELECT * FROM `table_users` WHERE `user_username` = :user_username';
         $query = $db->prepare($sql);
-        $query->bindValue(':user_username', $user_username, PDO::PARAM_STR);
-        $query->bindValue(':user_password', $user_encrypted_password, PDO::PARAM_STR);
-        $query->bindValue(':user_email', $user_email, PDO::PARAM_STR);
+        $query->bindValue(':user_username', $user_username, PDO::PARAM_INT);
         $query->execute();
-        // Redirection
-        echo 'Success! </br> <a href="index.php"><button>Back</button></a>';
+        $result = $query->fetch();
+        //var_dump($result) ;
+        if ($result['user_username'] == $user_username) {         
+            echo '<div>This user already exist.</div>';
+            echo '<div><a href="form_user-registration.php"><button>Back</button></a></div>';
+        } else {
+            $sql = 'INSERT INTO table_users(`user_username`, `user_password`, `user_email`) VALUES(:user_username, :user_password, :user_email)';
+            $query = $db->prepare($sql);
+            $query->bindValue(':user_username', $user_username, PDO::PARAM_STR);
+            $query->bindValue(':user_password', $user_encrypted_password, PDO::PARAM_STR);
+            $query->bindValue(':user_email', $user_email, PDO::PARAM_STR);
+            $query->execute();
+            // Redirection
+            echo 'Success! </br> <a href="form_user-registration.php"><button>Back</button></a>';
+        }
     //If passwords don\'t match :)
     } else {
         echo 'Passwords don\'t match.'; 
     }
 //If the form fields are empty
 }else{
-    echo 'Complete all form fields.';
+echo 'Complete all form fields.';
 }
