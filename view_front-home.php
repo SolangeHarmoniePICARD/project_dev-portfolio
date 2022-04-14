@@ -13,4 +13,6 @@
        <br>
     <?php } ?>
 
+    <div><a href="index.php"><button>Back</button></a></div>
+
 <?php include 'include_footer.php' ?>

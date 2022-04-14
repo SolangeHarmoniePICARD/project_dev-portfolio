@@ -1,15 +1,15 @@
 <?php
-session_start();
-if($_SESSION['username']){
-    require_once('db_connection.php');
-    $sql = 'SELECT * FROM `table_projects`';
-    $query = $db->prepare($sql);
-    $query->execute();
-    $projects = $query->fetchAll(PDO::FETCH_ASSOC);
-// If bad authentification
-} else {
-    echo "Username or password are incorrect. ";
-}
+    session_start();
+    if($_SESSION['username']){
+        require_once('db_connection.php');
+        $sql = 'SELECT * FROM `table_projects`';
+        $query = $db->prepare($sql);
+        $query->execute();
+        $projects = $query->fetchAll(PDO::FETCH_ASSOC);
+    // If bad authentification
+    } else {
+        echo "Username or password are incorrect. ";
+    }
 ?>
 
 <?php include 'include_header.php' ?>
