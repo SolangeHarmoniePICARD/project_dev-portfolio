@@ -1,5 +1,6 @@
-<?php
+<?php session_start(); ?>
 
+<?php
     if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
         require_once('db_connection.php');
         $project_id = strip_tags($_GET['project_id']);
@@ -12,22 +13,23 @@
         $result = $query->fetch();
         require_once('db_close.php'); // Closing database access
 
-        if ($result) {
-            echo '<div>Ok, you can edit this project.</div>';
-        } else {
-            echo '<div>This ID doesn\'t exist.</div>';
-            echo '<div><a href="view_back-home.php"><button>Back</button></a></div>';
-        }
-
     //If there is no id
     } else {
-        echo '<div>URL is not valid...</div>'; 
-        echo '<div><a href="view_back-home.php"><button>Back</button></a></div>';
+        $_SESSION['error'] = 'URL is not valid...';
+        header('Location: view_back-home.php'); 
     }
-
 ?>
 
 <?php include 'include_header.php' ?>
+
+<?php 
+    if ($result) {
+        echo '<div>Ok, you can edit this project.</div>';
+    } else {
+        $_SESSION['error'] = 'This ID doesn\'t exist.';
+        header('Location: view_back-home.php'); 
+    }
+?>
 
 <form action="handler_project-edit.php" method="post">
     <input type="hidden" name="project_id" value='<?= $result['project_id'] ?>'>

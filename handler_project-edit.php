@@ -22,16 +22,17 @@ if($_SESSION['username']){
         require_once('db_close.php'); // Closing database access
 
         // Redirection
-        echo '<div>Project modified.</div>';
-        echo '<div><a href="view_back-home.php"><button>Back</button></a></div>';
+        $_SESSION['success'] = "Project modified.";
+        header('Location: view_back-home.php'); 
 
     //If the form fields are empty
     } else {
-        echo "Complete all fields. ";
-        echo '<div><a href="view_back-home.php"><button>Back</button></a></div>';
+        $_SESSION['error'] = "Complete all fields. ";
+        header('Location: view_back-home.php'); 
     }
     
 // If bad authentification
 } else {
-    echo "Username or password are incorrect. ";
+    $_SESSION['error'] = "Username or password are incorrect. ";
+    header('Location: view_back-home.php'); 
  }
