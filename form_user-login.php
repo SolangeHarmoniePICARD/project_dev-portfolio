@@ -7,6 +7,10 @@
         echo '<div>'.$_SESSION['success'].'</div>';
         $_SESSION['success'] = ''; // Cleaning the superglobal variable
     }
+    if(!empty($_SESSION['error'])){
+        echo '<div>'.$_SESSION['error'].'</div>';
+        $_SESSION['error'] = ''; // Cleaning the superglobal variable
+    }
 ?>
 
     <form action="handler_user-login.php" method="post">
