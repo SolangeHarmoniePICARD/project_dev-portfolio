@@ -9,17 +9,17 @@ $result = $query->fetch();
 require_once('db_close.php'); // Closing database access
 
 if(!$result){
-    $_SESSION['error'] = "Username or password are incorrect.";
+    $_SESSION['error'] = 'Username or password are incorrect.';
     header('Location: form_user-login.php'); 
 }else{
     $checking_password = password_verify($_POST['data_password'], $result['user_password']);
     if (!$checking_password) {
-        $_SESSION['error'] = "Username or password are incorrect.";
+        $_SESSION['error'] = 'Username or password are incorrect.';
         header('Location: form_user-login.php');
     }else{
         $_SESSION['id'] = $result['user_id'];
         $_SESSION['username'] = $result['user_username'];
-        $_SESSION['success'] = "Successs!";
+        $_SESSION['success'] = 'Successs!';
         header('Location: view_back-home.php');  
     } 
 }

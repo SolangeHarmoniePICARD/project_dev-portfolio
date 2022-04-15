@@ -1,5 +1,5 @@
 <?php
-
+session_start();
     if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
         require_once('db_connection.php');
         $project_id = strip_tags($_GET['project_id']);
@@ -10,16 +10,16 @@
         $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetch();
-
+        require_once('db_close.php'); // Closing database access
         if (!$result) {
-            echo '<div>This ID doesn\'t exist.</div>';
-            echo '<div><a href="view_front-home.php"><button>Back</button></a></div>';
+            $_SESSION['error'] = 'This ID doesn\'t exist.';
+            header('Location: view_front-home.php'); 
         }
 
     //If there is no id
     } else {
-        echo '<div>URL is not valid...</div>'; 
-        echo '<div><a href="view_front-home.php"><button>Back</button></a></div>';
+        $_SESSION['error'] = 'URL is not valid...';
+        header('Location: view_front-home.php'); 
     }
 
 ?>
@@ -28,5 +28,7 @@
 
     <h1><?=$result['project_title']?> </h1>
     <p><?=$result['project_description']?></p>
+
+    <div><a href="view_front-home.php"><button>Back</button></a></div>
 
 <?php include 'include_footer.php' ?>

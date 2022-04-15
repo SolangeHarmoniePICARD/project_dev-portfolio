@@ -24,21 +24,20 @@ if($_SESSION['username']){
             $query->execute();
             require_once('db_close.php'); // Closing database access
             // Success
-            echo '<div>Project deleted!</div>';
-            echo '<div><a href="view_back-home.php"><button>Back</button></a></div>';
+            $_SESSION['success'] = "Project deleted.";
+            header('Location: view_back-home.php'); 
         } else {
-            echo '<div>This ID doesn\'t exist.</div>';
-            echo '<div><a href="view_back-home.php"><button>Back</button></a></div>';
+            $_SESSION['error'] = "This ID doesn\'t exist.";
+            header('Location: view_back-home.php'); 
         }
 
     //If the form fields are empty    
     } else {
-
-        echo '<div>URL is not valid...</div>'; 
-        echo '<div><a href="view_back-home.php"><button>Back</button></a></div>';
-
+        $_SESSION['error'] = "URL is not valid...";
+        header('Location: index.php');
     }
 // If bad authentification
 } else {
-    echo "Username or password are incorrect. ";
+    $_SESSION['error'] = "Username or password are incorrect.";
+    header('Location: index.php');
  }

@@ -6,6 +6,9 @@
     if(!empty($_SESSION['success'])){
         echo '<div>'.$_SESSION['success'].'</div>';
         $_SESSION['success'] = ''; // Cleaning the superglobal variable
+    } else if(!empty($_SESSION['error'])){
+        echo '<div>'.$_SESSION['error'].'</div>';
+        $_SESSION['error'] = ''; // Cleaning the superglobal variable
     }
 ?>
 
