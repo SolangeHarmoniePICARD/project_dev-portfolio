@@ -1,4 +1,13 @@
+<?php session_start(); ?>
+
 <?php include 'include_header.php' ?>
+
+<?php
+    if(!empty($_SESSION['success'])){
+        echo '<div>'.$_SESSION['success'].'</div>';
+        $_SESSION['error'] = ''; // Cleaning the superglobal variable
+    }
+?>
 
 <div>
     <a href="view_front-home.php">
