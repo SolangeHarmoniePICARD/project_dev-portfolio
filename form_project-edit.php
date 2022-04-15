@@ -10,6 +10,7 @@
         $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetch();
+        require_once('db_close.php'); // Closing database access
 
         if ($result) {
             echo '<div>Ok, you can edit this project.</div>';

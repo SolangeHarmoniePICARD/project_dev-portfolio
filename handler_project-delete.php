@@ -22,6 +22,7 @@ if($_SESSION['username']){
             $query = $db->prepare($sql);
             $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
             $query->execute();
+            require_once('db_close.php'); // Closing database access
             // Success
             echo '<div>Project deleted!</div>';
             echo '<div><a href="view_back-home.php"><button>Back</button></a></div>';

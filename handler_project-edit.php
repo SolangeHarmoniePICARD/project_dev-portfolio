@@ -19,6 +19,7 @@ if($_SESSION['username']){
         $query->bindValue(':project_title', $project_title, PDO::PARAM_STR);
         $query->bindValue(':project_description', $project_description, PDO::PARAM_STR);
         $query->execute();
+        require_once('db_close.php'); // Closing database access
 
         // Redirection
         echo '<div>Project modified.</div>';
