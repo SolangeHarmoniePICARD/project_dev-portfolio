@@ -1,14 +1,20 @@
 <?php
     session_start();
     if($_SESSION['username']){
-        require_once('db_connection.php');
-        $sql = 'SELECT * FROM `table_projects`';
-        $query = $db->prepare($sql);
-        $query->execute();
-        $projects = $query->fetchAll(PDO::FETCH_ASSOC);
+        if(!empty($_SESSION['success'])){
+            echo '<div>'.$_SESSION['success'].'</div>';
+            $_SESSION['success'] = ''; // Cleaning the superglobal variable
+            require_once('db_connection.php');
+            $sql = 'SELECT * FROM `table_projects`';
+            $query = $db->prepare($sql);
+            $query->execute();
+            $projects = $query->fetchAll(PDO::FETCH_ASSOC);
+            require_once('db_close.php'); // Closing database access
+        }
     // If bad authentification
-    } else {
-        echo "Username or password are incorrect. ";
+    } else if(!empty($_SESSION['error'])) {
+        echo '<div>'.$_SESSION['error'].'</div>';
+        $_SESSION['error'] = ''; // Cleaning the superglobal variable
     }
 ?>
 
