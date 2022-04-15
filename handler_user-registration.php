@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Verifying form fields
 if(isset($_POST['data_username']) && !empty($_POST['data_username']) 
 && isset($_POST['data_email']) && !empty($_POST['data_email']) 
@@ -20,8 +21,8 @@ if(isset($_POST['data_username']) && !empty($_POST['data_username'])
         $result = $query->fetch();
         //var_dump($result) ;
         if ($result['user_username'] == $user_username) {         
-            echo '<div>This user already exist.</div>';
-            echo '<div><a href="form_user-registration.php"><button>Back</button></a></div>';
+            $_SESSION['error'] = 'This user already exist.';
+            header('Location: form_user-registration.php'); 
         } else {
             $sql = 'INSERT INTO table_users(`user_username`, `user_password`, `user_email`) VALUES(:user_username, :user_password, :user_email)';
             $query = $db->prepare($sql);
@@ -29,14 +30,18 @@ if(isset($_POST['data_username']) && !empty($_POST['data_username'])
             $query->bindValue(':user_password', $user_encrypted_password, PDO::PARAM_STR);
             $query->bindValue(':user_email', $user_email, PDO::PARAM_STR);
             $query->execute();
+            require_once('db_close.php'); // Closing database access
             // Redirection
-            echo 'Success! </br> <a href="form_user-registration.php"><button>Back</button></a>';
+            $_SESSION['success'] = "Success ! User has been registered.";
+            header('Location: form_user-login.php'); 
         }
     //If passwords don\'t match :)
     } else {
-        echo 'Passwords don\'t match.'; 
+        $_SESSION['error'] = 'Passwords don\'t match.';
+        header('Location: form_user-registration.php'); 
     }
 //If the form fields are empty
 }else{
-echo 'Complete all form fields.';
+    $_SESSION['error'] = 'Complete all form fields.';
+    header('Location: form_user-registration.php'); 
 }

@@ -1,4 +1,13 @@
+<?php session_start(); ?>
+
 <?php include 'include_header.php' ?>
+
+<?php
+    if(!empty($_SESSION['success'])){
+        echo '<div>'.$_SESSION['success'].'</div>';
+        $_SESSION['success'] = ''; // Cleaning the superglobal variable
+    }
+?>
 
     <form action="handler_user-login.php" method="post">
         <div>
