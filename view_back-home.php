@@ -1,7 +1,10 @@
 <?php
     session_start();
     if($_SESSION['username']){
-        if(!empty($_SESSION['success'])){
+        if(!empty($_SESSION['error'])) {
+            echo '<div>'.$_SESSION['error'].'</div>';
+            $_SESSION['error'] = ''; // Cleaning the superglobal variable
+        } else if(!empty($_SESSION['success'])){
             echo '<div>'.$_SESSION['success'].'</div>';
             $_SESSION['success'] = ''; // Cleaning the superglobal variable
         }
@@ -11,10 +14,6 @@
         $query->execute();
         $projects = $query->fetchAll(PDO::FETCH_ASSOC);
         require_once('db_close.php'); // Closing database access
-    // If bad authentification
-    } else if(!empty($_SESSION['error'])) {
-        echo '<div>'.$_SESSION['error'].'</div>';
-        $_SESSION['error'] = ''; // Cleaning the superglobal variable
     }
 
 ?>

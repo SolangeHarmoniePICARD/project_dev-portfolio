@@ -32,7 +32,7 @@ if(isset($_POST['data_username']) && !empty($_POST['data_username'])
             $query->execute();
             require_once('db_close.php'); // Closing database access
             // Redirection
-            $_SESSION['success'] = "Success ! User has been registered.";
+            $_SESSION['success'] = 'Success ! User has been registered.';
             header('Location: form_user-login.php'); 
         }
     //If passwords don\'t match :)

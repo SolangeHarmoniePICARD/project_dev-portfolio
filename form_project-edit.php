@@ -3,6 +3,7 @@
 <?php
     if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
         require_once('db_connection.php');
+
         $project_id = strip_tags($_GET['project_id']);
 
         // Checking existence of the id sent by url
@@ -12,7 +13,14 @@
         $query->execute();
         $result = $query->fetch();
         require_once('db_close.php'); // Closing database access
-
+        // var_dump($result) ;
+        // echo $result['project_id'];
+        if ($result['project_id'] != $project_id) {
+            $_SESSION['error'] = 'This ID doesn\'t exist.';
+            header('Location: view_back-home.php');
+        } else if ($result) {
+            echo '<div>Ok, you can edit this project.</div>';
+        }
     //If there is no id
     } else {
         $_SESSION['error'] = 'URL is not valid...';
@@ -21,15 +29,6 @@
 ?>
 
 <?php include 'include_header.php' ?>
-
-<?php 
-    if ($result) {
-        echo '<div>Ok, you can edit this project.</div>';
-    } else {
-        $_SESSION['error'] = 'This ID doesn\'t exist.';
-        header('Location: view_back-home.php'); 
-    }
-?>
 
 <form action="handler_project-edit.php" method="post">
     <input type="hidden" name="project_id" value='<?= $result['project_id'] ?>'>

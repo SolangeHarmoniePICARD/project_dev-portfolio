@@ -5,7 +5,7 @@ session_start();
 $_SESSION = array();
 session_destroy();
 
-// Disconnection Success Message
+// Logout Success Message
 session_start();
-$_SESSION['success'] = "Logout successfully!";
+$_SESSION['success'] = 'Logout successfully!';
 header('Location: index.php');  
