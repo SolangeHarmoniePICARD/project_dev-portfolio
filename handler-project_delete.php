@@ -5,7 +5,7 @@ if($_SESSION['username']){
     // Verifying form fields
     if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
 
-        require_once('db_connection.php');
+        require_once('db_connect.php');
 
         // Data cleaning & storing in variable
         $project_id = $_GET['project_id'];
@@ -25,16 +25,16 @@ if($_SESSION['username']){
             require_once('db_close.php'); // Closing database access
             // Success
             $_SESSION['success'] = "Project deleted.";
-            header('Location: view_back-home.php'); 
+            header('Location: view-backoffice_home.php'); 
         } else {
             $_SESSION['error'] = "This ID doesn\'t exist.";
-            header('Location: view_back-home.php'); 
+            header('Location: view-backoffice_home.php'); 
         }
 
     //If the form fields are empty    
     } else {
         $_SESSION['error'] = "URL is not valid...";
-        header('Location: index.php');
+        header('Location: view-backoffice_home.php'); 
     }
 // If bad authentification
 } else {

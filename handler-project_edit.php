@@ -12,7 +12,7 @@ if($_SESSION['username']){
         $project_description = strip_tags($_POST['data_description']);
 
         // Data insertion into the database
-        require_once('db_connection.php');
+        require_once('db_connect.php');
         $sql = 'UPDATE `table_projects` SET `project_title`=:project_title, `project_description`=:project_description WHERE `project_id`=:project_id;';
         $query = $db->prepare($sql);
         $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
@@ -23,16 +23,16 @@ if($_SESSION['username']){
 
         // Redirection
         $_SESSION['success'] = 'Project modified.';
-        header('Location: view_back-home.php'); 
+        header('Location: form-project_edit.php?project_id='.$project_id); 
 
     //If the form fields are empty
     } else {
         $_SESSION['error'] = 'Complete all fields.';
-        header('Location: view_back-home.php'); 
+        header('Location: form-project_edit.php?project_id='.$project_id); 
     }
     
 // If bad authentification
 } else {
     $_SESSION['error'] = 'Username or password are incorrect.';
-    header('Location: view_back-home.php'); 
+    header('Location: index.php');
  }

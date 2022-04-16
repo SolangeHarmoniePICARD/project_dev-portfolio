@@ -22,7 +22,7 @@ if(isset($_POST['data_submit'])) {
 
         $check_upload = 0;
         $_SESSION['error'] .= 'File is not an image. ';
-        header('Location: form_project-edit.php?project_id='.$_POST['project_id']); 
+        header('Location: form-project_edit.php?project_id='.$_POST['project_id']); 
 
     }
 
@@ -33,7 +33,7 @@ if (file_exists($project_thumbnail)) {
 
     $check_upload = 0;
     $_SESSION['error'] .= 'Sorry, file already exists. ';
-    header('Location: form_project-edit.php?project_id='.$_POST['project_id']); 
+    header('Location: form-project_edit.php?project_id='.$_POST['project_id']); 
 
 }
 
@@ -42,7 +42,7 @@ if ($_FILES['data_thumbnail']['size'] > 2000000) {
 
     $check_upload = 0;
     $_SESSION['error'] .= 'Sorry, your file is too large. ';
-    header('Location: form_project-edit.php?project_id='.$_POST['project_id']); 
+    header('Location: form-project_edit.php?project_id='.$_POST['project_id']); 
 
 }
 
@@ -52,7 +52,7 @@ if($check_imageFileType != 'jpg' && $check_imageFileType != 'png' && $check_imag
 
     $check_upload = 0;
     $_SESSION['error'] .= 'Sorry, only JPG, JPEG, PNG & GIF files are allowed. ';
-    header('Location: form_project-edit.php?project_id='.$_POST['project_id']); 
+    header('Location: form-project_edit.php?project_id='.$_POST['project_id']); 
 
 }
 
@@ -60,7 +60,7 @@ if($check_imageFileType != 'jpg' && $check_imageFileType != 'png' && $check_imag
 if ($check_upload == 0) {
 
     $_SESSION['error'] .= 'Sorry, your file was not uploaded. ';
-    header('Location: form_project-edit.php?project_id='.$_POST['project_id']); 
+    header('Location: form-project_edit.php?project_id='.$_POST['project_id']); 
 
 // if everything is ok, try to upload file
 } else {
@@ -68,7 +68,7 @@ if ($check_upload == 0) {
     if (move_uploaded_file($_FILES['data_thumbnail']['tmp_name'], $project_thumbnail)) {
 
         // Data insertion into the database
-        require_once('db_connection.php');
+        require_once('db_connect.php');
         $sql = 'UPDATE `table_projects` SET `project_thumbnail`=:project_thumbnail WHERE `project_id`=:project_id';
         $query = $db->prepare($sql);
         $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
@@ -78,12 +78,12 @@ if ($check_upload == 0) {
 
         // Redirection
         $_SESSION['success'] = 'The file '. htmlspecialchars( basename( $_FILES['data_thumbnail']['name'])). ' has been uploaded. ';
-        header('Location: form_project-edit.php?project_id='.$_POST['project_id']); 
+        header('Location: form-project_edit.php?project_id='.$project_id); 
 
 
     } else {
         $_SESSION['error'] .= 'Sorry, there was an error uploading your file.';
-        header('Location: form_project-edit.php?project_id='.$_POST['project_id']); 
+        header('Location: form-project_edit.php?project_id='.$project_id); 
     }
 
 }

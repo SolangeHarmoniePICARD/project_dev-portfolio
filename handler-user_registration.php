@@ -13,7 +13,7 @@ if(isset($_POST['data_username']) && !empty($_POST['data_username'])
         $user_unencrypted_password = strip_tags($_POST['data_password']);
         $user_encrypted_password = password_hash($user_unencrypted_password , PASSWORD_DEFAULT);
         // Checking if user already exist...
-        require_once('db_connection.php');
+        require_once('db_connect.php');
         $sql = 'SELECT * FROM `table_users` WHERE `user_username` = :user_username';
         $query = $db->prepare($sql);
         $query->bindValue(':user_username', $user_username, PDO::PARAM_INT);
@@ -22,7 +22,7 @@ if(isset($_POST['data_username']) && !empty($_POST['data_username'])
         //var_dump($result) ;
         if ($result['user_username'] == $user_username) {         
             $_SESSION['error'] = 'This user already exist.';
-            header('Location: form_user-registration.php'); 
+            header('Location: form-user_registration.php'); 
         } else {
             $sql = 'INSERT INTO table_users(`user_username`, `user_password`, `user_email`) VALUES(:user_username, :user_password, :user_email)';
             $query = $db->prepare($sql);
@@ -33,15 +33,15 @@ if(isset($_POST['data_username']) && !empty($_POST['data_username'])
             require_once('db_close.php'); // Closing database access
             // Redirection
             $_SESSION['success'] = 'Success ! User has been registered.';
-            header('Location: form_user-login.php'); 
+            header('Location: form-user_login.php'); 
         }
     //If passwords don\'t match :)
     } else {
         $_SESSION['error'] = 'Passwords don\'t match.';
-        header('Location: form_user-registration.php'); 
+        header('Location: form-user_registration.php'); 
     }
 //If the form fields are empty
 }else{
     $_SESSION['error'] = 'Complete all form fields.';
-    header('Location: form_user-registration.php'); 
+    header('Location: form-user_registration.php'); 
 }

@@ -1,5 +1,5 @@
 <?php include 'include_header.php'; ?>
-<form action="handler_project-add.php" method="post" enctype="multipart/form-data">
+<form action="handler-project_add.php" method="post" enctype="multipart/form-data">
     <div>
         <label for="input_title">Title: </label>
         <input type="text" id="input_title" name="data_title" required>
@@ -19,7 +19,7 @@
     </div>
 </form>
 <div>
-    <a href="view_back-home.php">
+    <a href="view-backoffice_home.php">
         <button>Back</button>
     </a>
 </div>

@@ -74,7 +74,7 @@ if($_SESSION['username']){
         if (move_uploaded_file($_FILES['data_thumbnail']['tmp_name'], $project_thumbnail)) {
 
             // Data insertion into the database
-            require_once('db_connection.php');
+            require_once('db_connect.php');
             $sql = 'INSERT INTO `table_projects` (`project_title`, `project_description`, `project_thumbnail`, `project_status`) VALUES (:project_title, :project_description, :project_thumbnail, :project_status)';
             $query = $db->prepare($sql);
             $query->bindValue(':project_title', $project_title, PDO::PARAM_STR);
@@ -86,12 +86,12 @@ if($_SESSION['username']){
 
             // Redirection
             $_SESSION['success'] = "Project added.";
-            header('Location: view_back-home.php');
+            header('Location: view-backoffice_home.php');
 
 
         } else {
             $_SESSION['error'] .= 'Sorry, there was an error uploading your file.';
-            header('Location: view_back-home.php'); 
+            header('Location: view-backoffice_home.php'); 
         }
 
     }            
@@ -99,7 +99,7 @@ if($_SESSION['username']){
     //If the form fields are empty
     } else {
         $_SESSION['error'] = "Complete all fields.";
-        header('Location: view_back-home.php');
+        header('Location: view-backoffice_home.php');
     }
 
 // If bad authentification

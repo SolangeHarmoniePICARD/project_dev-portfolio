@@ -1,7 +1,7 @@
 <?php include 'include_header.php'; 
 if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     $project_id = strip_tags($_GET['project_id']);
-    require_once('db_connection.php');
+    require_once('db_connect.php');
     // Checking existence of the id sent by url
     $sql = 'SELECT * FROM `table_projects` WHERE `project_id` = :project_id';
     $query = $db->prepare($sql);
@@ -13,14 +13,14 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     // echo $result['project_id'];
     if ($result['project_id'] != $project_id) {
         $_SESSION['error'] = 'This ID doesn\'t exist.';
-        header('Location: view_back-home.php');
+        header('Location: view-backoffice_home.php');
     } else if ($result) {
         echo '<div>Ok, you can edit this project.</div>';
     }
 //If there is no id
 } else {
     $_SESSION['error'] = 'URL is not valid...';
-    header('Location: view_back-home.php'); 
+    header('Location: view-backoffice_home.php'); 
 } 
 ?>
 
@@ -28,7 +28,7 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     <img src="<?= $result['project_thumbnail'] ?>" alt="Thumbnail of the project <?= $result['project_title'] ?>">
 </figure>
 
-<form action="handler_project-update-thumbnail.php" method="post" enctype="multipart/form-data">
+<form action="handler-project_update-thumbnail.php" method="post" enctype="multipart/form-data">
     <div>Select new image to upload:</div>
     <div>
         <input type="hidden" name="project_id" value='<?= $result['project_id'] ?>'>
@@ -37,7 +37,7 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     </div>
 </form>
 
-<form action="handler_project-edit.php" method="post">
+<form action="handler-project_edit.php" method="post">
     <input type="hidden" name="project_id" value='<?= $result['project_id'] ?>'>
     <div>
         <label for="input_title">Title: </label>
@@ -53,7 +53,7 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     </div>
 </form>
 <div>
-    <a href="view_back-home.php">
+    <a href="view-backoffice_home.php">
         <button>Back</button>
     </a>
 </div>

@@ -1,5 +1,5 @@
 <?php include 'include_header.php';
-    require_once('db_connection.php');
+    require_once('db_connect.php');
     $sql = 'SELECT * FROM `table_projects`';
     $query = $db->prepare($sql);
     $query->execute();
@@ -10,7 +10,7 @@
 <?php foreach($projects as $project){ ?>
     <?php 
         if($project['project_status'] == 1){
-            echo '<a href="view_front-single.php?project_id='. $project['project_id'] .'">'.'Project «&nbsp;'.$project['project_title'].'&nbsp;»</a>' ;
+            echo '<a href="view-front_single.php?project_id='. $project['project_id'] .'">'.'Project «&nbsp;'.$project['project_title'].'&nbsp;»</a>' ;
         } else {
             echo 'Project «&nbsp;'.$project['project_title'].'&nbsp;»: Currently, this project is private... come back later!';
         }
