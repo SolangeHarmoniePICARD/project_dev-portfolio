@@ -22,5 +22,5 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
 <h1><?=$result['project_title']?> </h1>
 <img src="<?=$result['project_thumbnail']?>" alt="The thumbnail of the project <?=$result['project_title']?>.">
 <p><?=$result['project_description']?></p>
-<div><a href="view_front-home.php"><button>Back</button></a></div>
+<div><a href="view-front_home.php"><button>Back</button></a></div>
 <?php include 'include_footer.php'; ?>
