@@ -10,6 +10,7 @@ CREATE TABLE `table_projects` (
   `project_id` int(11) NOT NULL AUTO_INCREMENT,
   `project_title` varchar(255) NOT NULL,
   `project_description` text NOT NULL,
+  `project_thumbnail` varchar(255) NOT NULL,
   PRIMARY KEY (`project_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -24,4 +25,4 @@ CREATE TABLE `table_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- 2022-04-13 05:13:59
+-- 2022-04-16 09:50:10

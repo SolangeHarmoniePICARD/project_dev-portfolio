@@ -27,6 +27,7 @@ session_start();
 <?php include 'include_header.php' ?>
 
     <h1><?=$result['project_title']?> </h1>
+    <img src="<?=$result['project_thumbnail']?>" alt="The thumbnail of the project <?=$result['project_title']?>.">
     <p><?=$result['project_description']?></p>
 
     <div><a href="view_front-home.php"><button>Back</button></a></div>
