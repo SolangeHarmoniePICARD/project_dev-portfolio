@@ -3,7 +3,7 @@ session_start();
 
 $project_id = strip_tags($_POST['project_id']);
 $project_directoryUploads = 'uploads/';
-$project_thumbnail = $project_directoryUploads . basename($_FILES['data_thumbnail']['name']);
+$project_thumbnail = $project_directoryUploads . 'thumbnail_' .time() . '_' . basename($_FILES['data_thumbnail']['name']);
 
 // echo $project_thumbnail ;
 // echo $_FILES['data_thumbnail']['name'] ;
