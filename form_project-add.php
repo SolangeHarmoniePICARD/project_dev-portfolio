@@ -1,5 +1,4 @@
-<?php include 'include_header.php' ?>
-
+<?php include 'include_header.php'; ?>
 <form action="handler_project-add.php" method="post" enctype="multipart/form-data">
     <div>
         <label for="input_title">Title: </label>
@@ -23,6 +22,4 @@
         <button>Back</button>
     </a>
 </div>
-
-
-<?php include 'include_footer.php' ?>
+<?php include 'include_footer.php'; ?>

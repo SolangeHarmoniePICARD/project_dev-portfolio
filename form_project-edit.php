@@ -1,40 +1,28 @@
-<?php session_start(); 
- if(!empty($_SESSION['error'])) {
-    echo '<div>'.$_SESSION['error'].'</div>';
-    $_SESSION['error'] = ''; // Cleaning the superglobal variable
-} else if(!empty($_SESSION['success'])){
-    echo '<div>'.$_SESSION['success'].'</div>';
-    $_SESSION['success'] = ''; // Cleaning the superglobal variable
-}
-
-    if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
-        require_once('db_connection.php');
-
-        $project_id = strip_tags($_GET['project_id']);
-
-        // Checking existence of the id sent by url
-        $sql = 'SELECT * FROM `table_projects` WHERE `project_id` = :project_id';
-        $query = $db->prepare($sql);
-        $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
-        $query->execute();
-        $result = $query->fetch();
-        require_once('db_close.php'); // Closing database access
-        // var_dump($result) ;
-        // echo $result['project_id'];
-        if ($result['project_id'] != $project_id) {
-            $_SESSION['error'] = 'This ID doesn\'t exist.';
-            header('Location: view_back-home.php');
-        } else if ($result) {
-            echo '<div>Ok, you can edit this project.</div>';
-        }
-    //If there is no id
-    } else {
-        $_SESSION['error'] = 'URL is not valid...';
-        header('Location: view_back-home.php'); 
-    } 
+<?php include 'include_header.php'; 
+if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
+    $project_id = strip_tags($_GET['project_id']);
+    require_once('db_connection.php');
+    // Checking existence of the id sent by url
+    $sql = 'SELECT * FROM `table_projects` WHERE `project_id` = :project_id';
+    $query = $db->prepare($sql);
+    $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
+    $query->execute();
+    $result = $query->fetch();
+    require_once('db_close.php'); // Closing database access
+    // var_dump($result) ;
+    // echo $result['project_id'];
+    if ($result['project_id'] != $project_id) {
+        $_SESSION['error'] = 'This ID doesn\'t exist.';
+        header('Location: view_back-home.php');
+    } else if ($result) {
+        echo '<div>Ok, you can edit this project.</div>';
+    }
+//If there is no id
+} else {
+    $_SESSION['error'] = 'URL is not valid...';
+    header('Location: view_back-home.php'); 
+} 
 ?>
-
-<?php include 'include_header.php' ?>
 
 <figure>
     <img src="<?= $result['project_thumbnail'] ?>" alt="Thumbnail of the project <?= $result['project_title'] ?>">
@@ -70,4 +58,4 @@
     </a>
 </div>
 
-<?php include 'include_footer.php' ?>
+<?php include 'include_footer.php'; ?>
