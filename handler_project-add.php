@@ -21,7 +21,7 @@ if($_SESSION['username']){
         require_once('db_close.php'); // Closing database access
 
         // Redirection
-        $_SESSION['error'] = "Project added.";
+        $_SESSION['success'] = "Project added.";
         header('Location: view_back-home.php');
 
     //If the form fields are empty
