@@ -10,7 +10,15 @@ if($_SESSION['username']){
 ?>
 <?php foreach($projects as $project){ ?>
     <div>
-        <?= $project['project_title'] ?> : <a href="form_project-edit.php?project_id=<?= $project['project_id'] ?>">Edit</a> || <a href="handler_project-delete.php?project_id=<?= $project['project_id'] ?>">Delete</a>
+       <span>Project «&nbsp;</span> <?= $project['project_title'] ?>&nbsp;» :</span> <a href="form_project-edit.php?project_id=<?= $project['project_id'] ?>">Edit</a> || <a href="handler_project-delete.php?project_id=<?= $project['project_id'] ?>">Delete</a> || <a href="handler_project-status.php?project_id=<?= $project['project_id'] ?>">
+        <?php 
+        if($project['project_status'] == 0){
+            echo 'Show' ;
+        } else {
+            echo 'Hide' ;
+        }
+        ?>
+        </a>
     </div>
 <?php } ?>
 <div>

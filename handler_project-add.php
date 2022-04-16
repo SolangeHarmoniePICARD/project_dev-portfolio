@@ -9,9 +9,10 @@ if($_SESSION['username']){
         // Data cleaning & storing in variables
         $project_title = strip_tags($_POST['data_title']);
         $project_description = strip_tags($_POST['data_description']);
+        $project_status = strip_tags($_POST['data_status']);
 
         $project_directoryUploads = 'uploads/';
-        $project_thumbnail = $project_directoryUploads . basename($_FILES['data_thumbnail']['name']);
+        $project_thumbnail = $project_directoryUploads . 'thumbnail_' .time() . '_' . basename($_FILES['data_thumbnail']['name']);
 
         $check_upload = 1;
         $check_imageFileType = strtolower(pathinfo($project_thumbnail,PATHINFO_EXTENSION));
@@ -74,11 +75,12 @@ if($_SESSION['username']){
 
             // Data insertion into the database
             require_once('db_connection.php');
-            $sql = 'INSERT INTO `table_projects` (`project_title`, `project_description`, `project_thumbnail`) VALUES (:project_title, :project_description, :project_thumbnail);';
+            $sql = 'INSERT INTO `table_projects` (`project_title`, `project_description`, `project_thumbnail`, `project_status`) VALUES (:project_title, :project_description, :project_thumbnail, :project_status)';
             $query = $db->prepare($sql);
             $query->bindValue(':project_title', $project_title, PDO::PARAM_STR);
             $query->bindValue(':project_description', $project_description, PDO::PARAM_STR);
             $query->bindValue(':project_thumbnail', $project_thumbnail, PDO::PARAM_STR);
+            $query->bindValue(':project_status', $project_status, PDO::PARAM_STR);
             $query->execute();
             require_once('db_close.php'); // Closing database access
 

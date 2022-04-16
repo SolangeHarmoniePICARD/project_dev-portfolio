@@ -8,7 +8,13 @@
 ?>
 
 <?php foreach($projects as $project){ ?>
-    <a href="view_front-single.php?project_id=<?= $project['project_id'] ?>"><?= $project['project_title'] ?></a>
+    <?php 
+        if($project['project_status'] == 1){
+            echo '<a href="view_front-single.php?project_id='. $project['project_id'] .'">'.'Project «&nbsp;'.$project['project_title'].'&nbsp;»</a>' ;
+        } else {
+            echo 'Project «&nbsp;'.$project['project_title'].'&nbsp;»: Currently, this project is private... come back later!';
+        }
+        ?>
     <br>
 <?php } ?>
 

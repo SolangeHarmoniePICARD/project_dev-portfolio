@@ -13,6 +13,7 @@
         <textarea id="input_description" rows="8" name="data_description" required></textarea>
     </div>
     <div >
+        <input type="hidden" value='0' name="data_status" id="input_status">
         <input type="submit" value="Add Project" name="data_submit"  id="input_submit">
         <input type="reset" value="Reset">
     </div>
