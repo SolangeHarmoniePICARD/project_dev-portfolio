@@ -1,26 +1,40 @@
-<?php include 'include_header.php'; ?>
+<?php include 'include_header.php';     require_once('db_connect.php');
+    // Checking existence of the id sent by url
+    $sql = 'SELECT * FROM `table_tags`';
+    $query = $db->prepare($sql);
+    $query->execute();
+    $tags = $query->fetchAll(PDO::FETCH_ASSOC);
+    require_once('db_close.php'); // Closing database access
+    // var_dump($tags) ;
+?>
 <form action="handler-project_add.php" method="post" enctype="multipart/form-data">
-    <div>
+    <p>
         <label for="input_title">Title: </label>
         <input type="text" id="input_title" name="data_title" required>
-    </div>
-    <div>
+    </p>
+    <p>
+        <label for="input_project-tag">Tags: </label>
+        <?php foreach($tags as $tag){ ?>
+            <input type="checkbox" value="<?= $tag['tag_id'] ?>" id="input_<?= $tag['tag_name'] ?>" name="data_<?= $tag['tag_name'] ?>"> <label for="input_<?= $tag['tag_name'] ?>"><?= $tag['tag_name'] ?></label>
+        <?php } ?>
+    </p>
+    <p>
         <label for="input_thumbnail">Thumbnail: </label>
         <input type="file" id="input_thumbnail" name="data_thumbnail" required>
-    </div>
-    <div>
+    </p>
+    <p>
         <label for="input_description">Description: </label>
         <textarea id="input_description" rows="8" name="data_description" required></textarea>
-    </div>
-    <div >
+    </p>
+    <p >
         <input type="hidden" value='0' name="data_status" id="input_status">
         <input type="submit" value="Add Project" name="data_submit"  id="input_submit">
         <input type="reset" value="Reset">
-    </div>
+    </p>
 </form>
-<div>
+<p>
     <a href="view-backoffice_home.php">
         <button>Back</button>
     </a>
-</div>
+</p>
 <?php include 'include_footer.php'; ?>

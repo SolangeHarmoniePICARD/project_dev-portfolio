@@ -12,11 +12,11 @@
 
 <?php
     if(!empty($_SESSION['success'])){
-        echo '<div>'.$_SESSION['success'].'</div>';
+        echo '<p>'.$_SESSION['success'].'</p>';
         $_SESSION['success'] = ''; // Cleaning the superglobal variable
     } 
     if(!empty($_SESSION['error'])){
-        echo '<div>'.$_SESSION['error'].'</div>';
+        echo '<p>'.$_SESSION['error'].'</p>';
         $_SESSION['error'] = ''; // Cleaning the superglobal variable
     }
 ?>

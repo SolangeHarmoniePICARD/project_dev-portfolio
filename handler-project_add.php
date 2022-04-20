@@ -75,6 +75,12 @@ if($_SESSION['username']){
 
             // Data insertion into the database
             require_once('db_connect.php');
+
+            $sql = 'SELECT * FROM `table_tags`';
+            $query = $db->prepare($sql);
+            $query->execute();
+            $tags = $query->fetchAll(PDO::FETCH_ASSOC);
+
             $sql = 'INSERT INTO `table_projects` (`project_title`, `project_description`, `project_thumbnail`, `project_status`) VALUES (:project_title, :project_description, :project_thumbnail, :project_status)';
             $query = $db->prepare($sql);
             $query->bindValue(':project_title', $project_title, PDO::PARAM_STR);
@@ -82,6 +88,23 @@ if($_SESSION['username']){
             $query->bindValue(':project_thumbnail', $project_thumbnail, PDO::PARAM_STR);
             $query->bindValue(':project_status', $project_status, PDO::PARAM_STR);
             $query->execute();
+
+            $project_id = $db->lastInsertId();
+            
+            foreach($tags as $tag){
+                $tag_id_.$tag['tag_name'] = strip_tags($_POST['data_'.$tag['tag_name']]) ;
+                if ($project_tag_.$tag['tag_name']) {
+                    $tag_id = $tag['tag_id'];
+                    //echo $tag_id;
+                    // Data insertion into the intermediary_tags-to-projects table
+                    $sql = 'INSERT INTO `intermediary_tags-to-projects` (`project_id`, `tag_id`) VALUES (:project_id, :tag_id)';
+                    $query = $db->prepare($sql);
+                    $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
+                    $query->bindValue(':tag_id', $tag_id, PDO::PARAM_INT);
+                    $query->execute();
+                }
+            }
+
             require_once('db_close.php'); // Closing database access
 
             // Redirection
