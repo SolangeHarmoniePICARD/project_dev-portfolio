@@ -13,8 +13,8 @@ CREATE TABLE `intermediary_tags-to-projects` (
   PRIMARY KEY (`tag-to-project_id`),
   KEY `project_id` (`project_id`),
   KEY `tag_id` (`tag_id`),
-  CONSTRAINT `intermediary_tags-to-projects_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `table_projects` (`project_id`),
-  CONSTRAINT `intermediary_tags-to-projects_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `table_tags` (`tag_id`)
+  CONSTRAINT `intermediary_tags-to-projects_ibfk_3` FOREIGN KEY (`project_id`) REFERENCES `table_projects` (`project_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `intermediary_tags-to-projects_ibfk_4` FOREIGN KEY (`tag_id`) REFERENCES `table_tags` (`tag_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `table_projects`;
@@ -43,4 +43,4 @@ CREATE TABLE `table_users` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 2022-04-20 12:44:03
+-- 2022-04-20 13:28:32
