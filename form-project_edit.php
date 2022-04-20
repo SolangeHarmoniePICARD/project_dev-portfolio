@@ -12,7 +12,7 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     $sql = 'SELECT * FROM `table_tags`';
     $query = $db->prepare($sql);
     $query->execute();
-    $list_tags = $query->fetchAll(PDO::FETCH_ASSOC);
+    $tags = $query->fetchAll(PDO::FETCH_ASSOC);
 
     $sql = 'SELECT * FROM `table_projects` 
     JOIN `intermediary_tags-to-projects` 
@@ -20,7 +20,7 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     ON `intermediary_tags-to-projects`.`tag_id` = `table_tags`.`tag_id`';
     $query = $db->prepare($sql);
     $query->execute();
-    $tags = $query->fetchAll(PDO::FETCH_ASSOC);
+    $intermediary_tags = $query->fetchAll(PDO::FETCH_ASSOC);
     
     require_once('db_close.php'); // Closing database access
     // var_dump($project) ;
@@ -51,22 +51,44 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     </div>
 </form>
 
+<!-- <p> <span>Tag(s) :</span>
+<?php
+    // foreach($intermediary_tags as $intermediary_tag){
+    //     if ($intermediary_tag['project_id'] == $project['project_id']) {
+    //         echo '<button>'.$intermediary_tag['tag_name'].'</button>&nbsp;' ;
+    //     } 
+    // }
+?>
+
+<form action="handler-tag_edit-project.php" method="post">
+<input type="submit" value="Change Tags"> &nbsp;
+<?php
+    // foreach($tags as $tag){
+        
+    //     echo '<input type="checkbox" value="'.$tag['tag_id'].'" id="input_'.$tag['tag_name'].'" name="data_'.$tag['tag_name'].'"> <label for="input_'.$tag['tag_name'].'">'. $tag['tag_name'] .'</label>'  ;
+    // }
+?>
+
+</form>
+</p> -->
 <p> <span>Tag(s) :</span>
 <?php
-    foreach($tags as $tag){
-        if ($tag['project_id'] == $project['project_id']) {
-            echo '<button>'.$tag['tag_name'].'</button>&nbsp;' ;
+    foreach($intermediary_tags as $intermediary_tag){
+        if ($intermediary_tag['project_id'] == $project['project_id']) {
+            echo '<button>'.$intermediary_tag['tag_name'].'</button>&nbsp;' ;
         } 
     }
 ?>
 
 <form action="handler-tag_edit-project.php" method="post">
+<input type="submit" value="Change Tags"> &nbsp;
 <?php
-    foreach($list_tags as $list_tag){
+    foreach($tags as $tag){
         
-        echo '<input type="checkbox" value="'.$list_tag['tag_id'].'" id="input_'.$list_tag['tag_name'].'" name="data_'.$list_tag['tag_name'].'"> <label for="input_'.$list_tag['tag_name'].'">'. $list_tag['tag_name'] .'</label>'  ;
+        echo '<input type="checkbox" value="'.$tag['tag_id'].'" id="input_'.$tag['tag_name'].'" name="data_'.$tag['tag_name'].'"> <label for="input_'.$tag['tag_name'].'">'. $tag['tag_name'] .'</label>'  ;
     }
 ?>
+
 </form>
 </p>
 
