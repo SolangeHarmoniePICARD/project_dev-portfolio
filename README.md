@@ -1,5 +1,4 @@
-# Projet Portfolio
+# Web Developer Portfolio
 
-Un exemple de *back-office* (*CRUD*) de portfolio pour l'ACS DWWM de Besançon.
-
+> Replace the contents of the variables with your database connection information in "db_env-template.php" and rename the file to "db_env.php".
 

@@ -1,9 +1,5 @@
 <?php
-$db_servername = "localhost";
-$db_dbname = "db_project-portfolio";
-$db_username = "bdebot-dev";
-$db_password = "xifulibr";
-
+include('db_env.php');
 try {
   $db = new PDO("mysql:host=$db_servername;dbname=$db_dbname", $db_username, $db_password);
   // set the PDO error mode to exception
