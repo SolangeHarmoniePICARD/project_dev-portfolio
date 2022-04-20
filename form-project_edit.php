@@ -51,27 +51,8 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     </div>
 </form>
 
-<!-- <p> <span>Tag(s) :</span>
-<?php
-    // foreach($intermediary_tags as $intermediary_tag){
-    //     if ($intermediary_tag['project_id'] == $project['project_id']) {
-    //         echo '<button>'.$intermediary_tag['tag_name'].'</button>&nbsp;' ;
-    //     } 
-    // }
-?>
-
-<form action="handler-tag_edit-project.php" method="post">
-<input type="submit" value="Change Tags"> &nbsp;
-<?php
-    // foreach($tags as $tag){
-        
-    //     echo '<input type="checkbox" value="'.$tag['tag_id'].'" id="input_'.$tag['tag_name'].'" name="data_'.$tag['tag_name'].'"> <label for="input_'.$tag['tag_name'].'">'. $tag['tag_name'] .'</label>'  ;
-    // }
-?>
-
-</form>
-</p> -->
 <p> <span>Tag(s) :</span>
+
 <?php
     foreach($intermediary_tags as $intermediary_tag){
         if ($intermediary_tag['project_id'] == $project['project_id']) {
@@ -80,16 +61,16 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     }
 ?>
 
-<form action="handler-tag_edit-project.php" method="post">
-<input type="submit" value="Change Tags"> &nbsp;
-<?php
-    foreach($tags as $tag){
-        
-        echo '<input type="checkbox" value="'.$tag['tag_id'].'" id="input_'.$tag['tag_name'].'" name="data_'.$tag['tag_name'].'"> <label for="input_'.$tag['tag_name'].'">'. $tag['tag_name'] .'</label>'  ;
-    }
-?>
+    <form action="handler-project_update-tags.php" method="post">
+        <input type="hidden" name="project_id" value='<?= $project['project_id'] ?>'>
+        <input type="submit" value="Change Tags"> &nbsp;
+        <?php
+            foreach($tags as $tag){
+                echo '<input type="checkbox" value="'.$tag['tag_id'].'" id="input_'.$tag['tag_name'].'" name="data_'.$tag['tag_name'].'"> <label for="input_'.$tag['tag_name'].'">'. $tag['tag_name'] .'</label>'  ;
+            }
+        ?>
+    </form>
 
-</form>
 </p>
 
 
