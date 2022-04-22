@@ -91,14 +91,13 @@ if($_SESSION['username']){
 
             $project_id = $db->lastInsertId();
             
+            $sql = 'INSERT INTO `intermediary_tags-to-projects` (`project_id`, `tag_id`) VALUES (:project_id, :tag_id)';
+            $query = $db->prepare($sql);
             foreach($tags as $tag){
                 $tag_id_.$tag['tag_name'] = strip_tags($_POST['data_'.$tag['tag_name']]) ;
                 if ($project_tag_.$tag['tag_name']) {
                     $tag_id = $tag['tag_id'];
                     //echo $tag_id;
-                    // Data insertion into the intermediary_tags-to-projects table
-                    $sql = 'INSERT INTO `intermediary_tags-to-projects` (`project_id`, `tag_id`) VALUES (:project_id, :tag_id)';
-                    $query = $db->prepare($sql);
                     $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
                     $query->bindValue(':tag_id', $tag_id, PDO::PARAM_INT);
                     $query->execute();

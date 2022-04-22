@@ -107,7 +107,7 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
 
                 }
 
- print_r($tag_id_array);
+ //print_r($tag_id_array);
                 
 
                     foreach($tags as $tag){  
