@@ -16,7 +16,8 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
 
     $sql = 'SELECT * FROM `table_projects` 
     JOIN `intermediary_tags-to-projects` 
-    ON `table_projects`.`project_id` = `intermediary_tags-to-projects`.`project_id` JOIN `table_tags` 
+    ON `table_projects`.`project_id` = `intermediary_tags-to-projects`.`project_id` 
+    JOIN `table_tags` 
     ON `intermediary_tags-to-projects`.`tag_id` = `table_tags`.`tag_id`';
     $query = $db->prepare($sql);
     $query->execute();
@@ -61,13 +62,66 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     }
 ?>
 
+<?php
+
+
+
+                    foreach($tags as $tag){
+ 
+                        array_push($tag_array, $tag['tag_name'] );   
+                        array_push($tag_id_array, $tag['tag_id'] );
+
+                    }
+
+                    print_r($tag_id_array);
+                    
+                    ?>
+
+<?php
+// $stack = array("orange", "banana");
+// array_push($stack, "apple", "raspberry");
+// print_r($stack);
+?>
+
+
     <form action="handler-project_update-tags.php" method="post">
         <input type="hidden" name="project_id" value='<?= $project['project_id'] ?>'>
         <input type="submit" value="Change Tags"> &nbsp;
         <?php
-            foreach($tags as $tag){
-                echo '<input type="checkbox" value="'.$tag['tag_id'].'" id="input_'.$tag['tag_name'].'" name="data_'.$tag['tag_name'].'"> <label for="input_'.$tag['tag_name'].'">'. $tag['tag_name'] .'</label>'  ;
-            }
+            
+
+            $tags_id_array = array();
+
+            foreach($intermediary_tags as $intermediary_tag){
+                
+
+                if ($intermediary_tag['project_id'] == $project['project_id']) {
+                    // array_push($tag_array, $intermediary_tag['tag_name'] );   
+                array_push($tags_id_array, $intermediary_tag['tag_id'] );
+
+                        echo '<input type="checkbox" checked value="'.$intermediary_tag['tag_id'].'" id="input_'.$intermediary_tag['tag_name'].'" name="data_'.$intermediary_tag['tag_name'].'"> <label for="input_'.$intermediary_tag['tag_name'].'">'. $intermediary_tag['tag_name'] .'</label>'  ;
+
+                    
+
+                } 
+
+                }
+
+ print_r($tag_id_array);
+                
+
+                    foreach($tags as $tag){  
+                        if (!in_array($tag['tag_id'], $tags_id_array)) {
+                            echo '<input type="checkbox" value="'.$tag['tag_id'].'" id="input_'.$tag['tag_name'].'" name="data_'.$tag['tag_name'].'"> <label for="input_'.$tag['tag_name'].'">'. $tag['tag_name'] .'</label>'  ;
+                        // echo '<br>' . $tag['tag_id'] . '<br>'  ;
+                        } 
+                    }
+                    
+                
+
+                // print_r($tags);
+
+
         ?>
     </form>
 
