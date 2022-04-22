@@ -8,6 +8,23 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
     $query->execute();
     $result = $query->fetch();
+
+    $sql = 'SELECT * FROM `table_tags`';
+    $query = $db->prepare($sql);
+    $query->execute();
+    $tags = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $sql = 'SELECT * FROM `table_projects` 
+    JOIN `intermediary_tags-to-projects` 
+    ON `table_projects`.`project_id` = `intermediary_tags-to-projects`.`project_id` 
+    JOIN `table_tags` 
+    ON `intermediary_tags-to-projects`.`tag_id` = `table_tags`.`tag_id`';
+    $query = $db->prepare($sql);
+    $query->execute();
+    $intermediary_tags = $query->fetchAll(PDO::FETCH_ASSOC);
+
+   
+
     require_once('db_close.php'); // Closing database access
     if (!$result) {
         $_SESSION['error'] = 'This ID doesn\'t exist.';
@@ -20,7 +37,19 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
 }
 ?>
 <h1><?=$result['project_title']?> </h1>
-<img src="<?=$result['project_thumbnail']?>" alt="The thumbnail of the project <?=$result['project_title']?>.">
+<p>
+<?php
+    //print_r($intermediary_tags );
+    foreach($intermediary_tags as $intermediary_tag){
+        if ($intermediary_tag['project_id'] ==  $project_id ) {
+            echo '<button>'.$intermediary_tag['tag_name'].'</button>&nbsp;' ;
+        } 
+    }
+?>
+</p>
+<figure>
+    <img src="<?=$result['project_thumbnail']?>" alt="The thumbnail of the project <?=$result['project_title']?>.">
+</figure>
 <p><?=$result['project_description']?></p>
 <div><a href="view-front_home.php"><button>Back</button></a></div>
 <?php include 'include_footer.php'; ?>
