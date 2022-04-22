@@ -24,6 +24,10 @@ try {
     }
     
     $db->commit();
+
+    $_SESSION['success'] = 'Tags have been updated. ';
+    header('Location: form-project_edit.php?project_id='.$project_id); 
+    
 } 
 catch (\Exception $e) {
     if ($db->inTransaction()) {
