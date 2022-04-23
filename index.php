@@ -2,6 +2,7 @@
 
 <div>
     <a href="view-front_home.php"><button>Visit Site</button></a>
+    <a href="form-contact_send-mail.php"><button>Contact</button></a>
 </div>
 
 <div>
