@@ -19,8 +19,10 @@
             </div>
             <div>
                 <input type="submit" name="data_send" value="Send">
+                <input type="reset" value="Reset">
             </div>
         </form>
+        <div><a href="index.php"><button>Back</button></a></div>
     </div>
 
 <?php include 'include_footer.php'; ?>

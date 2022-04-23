@@ -1,13 +1,10 @@
-<?php
-session_start();
-// Verifying form fields
+<?php session_start();
 require_once('db_connect.php');
 $sql = 'SELECT user_id, user_username, user_password FROM table_users WHERE user_username = :user_username';
 $query = $db->prepare($sql);
 $query->execute(array('user_username' => $_POST['data_username']));
 $result = $query->fetch();
-require_once('db_close.php'); // Closing database access
-
+require_once('db_close.php');
 if(!$result){
     $_SESSION['error'] = 'Username or password are incorrect.';
     header('Location: form-user_login.php'); 

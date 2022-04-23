@@ -5,7 +5,6 @@ if ($_SESSION['username']) {
     if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
         require_once('db_connect.php');
         $project_id = strip_tags($_GET['project_id']);
-        // Checking existence of the id sent by url
         $sql = 'SELECT * FROM `table_projects` WHERE `project_id` = :project_id';
         $query = $db->prepare($sql);
         $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
@@ -21,11 +20,9 @@ if ($_SESSION['username']) {
             $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
             $query->bindValue(':project_status', $project_status, PDO::PARAM_INT);
             $query->execute();
-            require_once('db_close.php'); // Closing database access
-            // $_SESSION['success'] = "Success!";
             header('Location: view-backoffice_home.php');  
         }
-    //If there is no id
+        require_once('db_close.php');
     } else {
         $_SESSION['error'] = 'URL is not valid...';
         header('Location: view-backoffice_home.php'); 
