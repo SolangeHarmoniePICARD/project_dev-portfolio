@@ -27,4 +27,4 @@ session_start();
         header('Location: view-backoffice_tags-manager.php'); 
     }
 
-    // EOF
+// EOF

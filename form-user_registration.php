@@ -18,6 +18,11 @@
             <input type="password"  id="input_pswd-confirmation" name="data_pswd-confirmation" required>
         </div>
         <div>
+            <label for="input_captcha-checker">Captcha:</label>
+            <input type="text" id="input_captcha-checker" name="data_captcha-checker" maxlength="5" autocomplete="off" required> &nbsp; <img src="include_captcha-generator.php" alt="captcha">
+        </div>
+        <div>
+        <div>
             <input type="submit" id="form_submit" value="Sign up">
             <input type="reset" value="Reset">
         </div>
