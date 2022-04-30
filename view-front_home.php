@@ -1,11 +1,17 @@
-<?php include 'include_header.php';
+<?php
+
     require_once('db_connect.php');
+
     $sql = 'SELECT * FROM `table_projects`';
     $query = $db->prepare($sql);
     $query->execute();
     $projects = $query->fetchAll(PDO::FETCH_ASSOC);
+
     require_once('db_close.php'); // Closing database access
+
 ?>
+
+<?php include 'include_header.php'; ?>
 
 <?php foreach($projects as $project){ ?>
     <?php 
@@ -18,6 +24,13 @@
     <br>
 <?php } ?>
 
-<div><a href="index.php"><button>Back</button></a></div>
+<div><a href="index.php"><button>Home</button></a></div>
+<?php 
+    if(!empty($_SESSION['username'])){
+        echo '<div><a href="view-backoffice_home.php"><button>Back-office</button></a></div>';
+    } else {
+
+    }
+?>
 
 <?php include 'include_footer.php'; ?>

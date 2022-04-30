@@ -2,6 +2,11 @@
 
 <div>
     <a href="view-front_home.php"><button>Visit Site</button></a>
+    <?php 
+    if(!empty($_SESSION['username'])){
+        echo '<a href="view-backoffice_home.php"><button>Back-office</button></a>';
+    }
+?>
     <a href="form-contact_send-mail.php"><button>Contact</button></a>
 </div>
 
