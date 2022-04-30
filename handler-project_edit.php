@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 if($_SESSION['username']){
 
     // Verifying form fields
@@ -22,17 +24,19 @@ if($_SESSION['username']){
         require_once('db_close.php'); // Closing database access
 
         // Redirection
-        $_SESSION['success'] = 'Project modified.';
+        $_SESSION['message'] = 'Project modified.';
         header('Location: form-project_edit.php?project_id='.$project_id); 
 
     //If the form fields are empty
     } else {
-        $_SESSION['error'] = 'Complete all fields.';
+        $_SESSION['message'] = 'Complete all fields.';
         header('Location: form-project_edit.php?project_id='.$project_id); 
     }
     
 // If bad authentification
 } else {
-    $_SESSION['error'] = 'Username or password are incorrect.';
+    $_SESSION['message'] = 'Username or password are incorrect.';
     header('Location: index.php');
  }
+
+ // EOF

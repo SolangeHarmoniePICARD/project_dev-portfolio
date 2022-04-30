@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 if($_SESSION['username']){
     if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
         require_once('db_connect.php');
@@ -16,17 +18,19 @@ if($_SESSION['username']){
             $query->execute();
             require_once('db_close.php');
             unlink($result['project_thumbnail']);
-            $_SESSION['success'] = "Project deleted.";
+            $_SESSION['message'] = "Project deleted.";
             header('Location: view-backoffice_home.php'); 
         } else {
-            $_SESSION['error'] = "This ID doesn\'t exist.";
+            $_SESSION['message'] = "This ID doesn\'t exist.";
             header('Location: view-backoffice_home.php'); 
         }
     } else {
-        $_SESSION['error'] = "URL is not valid...";
+        $_SESSION['message'] = "URL is not valid...";
         header('Location: view-backoffice_home.php'); 
     }
 } else {
-    $_SESSION['error'] = "Username or password are incorrect.";
+    $_SESSION['message'] = "Username or password are incorrect.";
     header('Location: index.php');
  }
+
+// EOF

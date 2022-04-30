@@ -11,12 +11,8 @@
 <body>
 
 <?php
-    if(!empty($_SESSION['success'])){
-        echo '<p>'.$_SESSION['success'].'</p>';
-        $_SESSION['success'] = ''; // Cleaning the superglobal variable
+    if(!empty($_SESSION['message'])){
+        echo '<p>'.$_SESSION['message'].'</p>';
+        $_SESSION['message'] = ''; // Cleaning the superglobal variable
     } 
-    if(!empty($_SESSION['error'])){
-        echo '<p>'.$_SESSION['error'].'</p>';
-        $_SESSION['error'] = ''; // Cleaning the superglobal variable
-    }
 ?>

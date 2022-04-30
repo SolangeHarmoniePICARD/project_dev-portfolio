@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 if($_SESSION['username']){
     if(isset($_POST['data_title']) && !empty($_POST['data_title'])
     && isset($_POST['data_description']) && !empty($_POST['data_description'])){
@@ -20,27 +22,27 @@ if($_SESSION['username']){
                 $check_upload = 1;
             } else {
                 $check_upload = 0;
-                $_SESSION['error'] .= 'File is not an image. ';
+                $_SESSION['message'] .= 'File is not an image. ';
                 header('Location: view_back-home.php'); 
             }
         }
         if (file_exists($project_thumbnail)) {
             $check_upload = 0;
-            $_SESSION['error'] .= 'Sorry, file already exists. ';
+            $_SESSION['message'] .= 'Sorry, file already exists. ';
             header('Location: view_back-home.php'); 
         }
         if ($_FILES['data_thumbnail']['size'] > 2000000) {
             $check_upload = 0;
-            $_SESSION['error'] .= 'Sorry, your file is too large. ';
+            $_SESSION['message'] .= 'Sorry, your file is too large. ';
             header('Location: view_back-home.php'); 
         }
         if($check_imageFileType != 'jpg' && $check_imageFileType != 'png' && $check_imageFileType != 'jpeg' && $check_imageFileType != 'gif' ) {
             $check_upload = 0;
-            $_SESSION['error'] .= 'Sorry, only JPG, JPEG, PNG & GIF files are allowed. ';
+            $_SESSION['message'] .= 'Sorry, only JPG, JPEG, PNG & GIF files are allowed. ';
             header('Location: view_back-home.php'); 
         }
         if ($check_upload == 0) {
-            $_SESSION['error'] .= 'Sorry, your file was not uploaded. ';
+            $_SESSION['message'] .= 'Sorry, your file was not uploaded. ';
             header('Location: view_back-home.php'); 
         } else {
 
@@ -77,19 +79,21 @@ if($_SESSION['username']){
 
                 require_once('db_close.php');
 
-                $_SESSION['success'] = "Project added.";
-                header('Location: view-backoffice_home.php');
+                $_SESSION['message'] = "Project added.";
+                header('Location: form-project_edit.php?project_id='.$project_id);
 
             } else {
-                $_SESSION['error'] .= 'Sorry, there was an error uploading your file.';
+                $_SESSION['message'] .= 'Sorry, there was an error uploading your file.';
                 header('Location: view-backoffice_home.php'); 
             }
         }            
     } else {
-        $_SESSION['error'] = "Complete all fields.";
+        $_SESSION['message'] = "Complete all fields.";
         header('Location: view-backoffice_home.php');
     }
 } else {
-    $_SESSION['error'] = "Username or password are incorrect.";
+    $_SESSION['message'] = "Username or password are incorrect.";
     header('Location: index.php');
 }
+
+// EOF

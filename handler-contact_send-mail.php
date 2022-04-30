@@ -1,4 +1,6 @@
-<?php session_start();
+<?php 
+
+session_start();
 
 	if(isset($_POST['data_username']) && !empty($_POST['data_username'])
 	&& isset($_POST['data_email']) && !empty($_POST['data_email'])
@@ -23,12 +25,14 @@
 		$mail_recipient  = "bdebot-dev@outlook.com";
 		$mail_headers = "From: " . $contact_username . "<". $contact_email .">\r\n";
 		if(mail($mail_recipient, $contact_subject, $contact_message, $mail_headers)) {
-			$_SESSION['success'] = "Message sent!";
+			$_SESSION['message'] = "Message sent!";
 		} else {
-			$_SESSION['error'] = "There is a problem.";
+			$_SESSION['message'] = "There is a problem.";
 		}
 
 		header('Location: index.php');
 	} else {
-		$_SESSION['error'] = "Complete all fields.";
+		$_SESSION['message'] = "Complete all fields.";
 	}
+
+	// EOF

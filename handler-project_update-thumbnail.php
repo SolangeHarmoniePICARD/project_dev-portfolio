@@ -1,4 +1,5 @@
 <?php 
+
 session_start();
 
 $project_id = strip_tags($_POST['project_id']);
@@ -21,7 +22,7 @@ if(isset($_POST['data_submit'])) {
     } else {
 
         $check_upload = 0;
-        $_SESSION['error'] .= 'File is not an image. ';
+        $_SESSION['message'] .= 'File is not an image. ';
         header('Location: form-project_edit.php?project_id='.$_POST['project_id']); 
 
     }
@@ -32,7 +33,7 @@ if(isset($_POST['data_submit'])) {
 if (file_exists($project_thumbnail)) {
 
     $check_upload = 0;
-    $_SESSION['error'] .= 'Sorry, file already exists. ';
+    $_SESSION['message'] .= 'Sorry, file already exists. ';
     header('Location: form-project_edit.php?project_id='.$_POST['project_id']); 
 
 }
@@ -41,7 +42,7 @@ if (file_exists($project_thumbnail)) {
 if ($_FILES['data_thumbnail']['size'] > 2000000) {
 
     $check_upload = 0;
-    $_SESSION['error'] .= 'Sorry, your file is too large. ';
+    $_SESSION['message'] .= 'Sorry, your file is too large. ';
     header('Location: form-project_edit.php?project_id='.$_POST['project_id']); 
 
 }
@@ -51,7 +52,7 @@ if($check_imageFileType != 'jpg' && $check_imageFileType != 'png' && $check_imag
 && $check_imageFileType != 'gif' ) {
 
     $check_upload = 0;
-    $_SESSION['error'] .= 'Sorry, only JPG, JPEG, PNG & GIF files are allowed. ';
+    $_SESSION['message'] .= 'Sorry, only JPG, JPEG, PNG & GIF files are allowed. ';
     header('Location: form-project_edit.php?project_id='.$_POST['project_id']); 
 
 }
@@ -59,7 +60,7 @@ if($check_imageFileType != 'jpg' && $check_imageFileType != 'png' && $check_imag
 // Check if $check_upload is set to 0 by an error
 if ($check_upload == 0) {
 
-    $_SESSION['error'] .= 'Sorry, your file was not uploaded. ';
+    $_SESSION['message'] .= 'Sorry, your file was not uploaded. ';
     header('Location: form-project_edit.php?project_id='.$_POST['project_id']); 
 
 // if everything is ok, try to upload file
@@ -77,13 +78,15 @@ if ($check_upload == 0) {
         require_once('db_close.php'); // Closing database access
 
         // Redirection
-        $_SESSION['success'] = 'The file '. htmlspecialchars( basename( $_FILES['data_thumbnail']['name'])). ' has been uploaded. ';
+        $_SESSION['message'] = 'The file '. htmlspecialchars( basename( $_FILES['data_thumbnail']['name'])). ' has been uploaded. ';
         header('Location: form-project_edit.php?project_id='.$project_id); 
 
 
     } else {
-        $_SESSION['error'] .= 'Sorry, there was an error uploading your file.';
+        $_SESSION['message'] .= 'Sorry, there was an error uploading your file.';
         header('Location: form-project_edit.php?project_id='.$project_id); 
     }
 
 }
+
+// EOF

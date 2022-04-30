@@ -27,14 +27,14 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     // var_dump($project) ;
     // echo $project['project_id'];
     if ($project['project_id'] != $project_id) {
-        $_SESSION['error'] = 'This ID doesn\'t exist.';
+        $_SESSION['message'] = 'This ID doesn\'t exist.';
         header('Location: view-backoffice_home.php');
     } else if ($project) {
         echo '<div>Ok, you can edit this project.</div>';
     }
 //If there is no id
 } else {
-    $_SESSION['error'] = 'URL is not valid...';
+    $_SESSION['message'] = 'URL is not valid...';
     header('Location: view-backoffice_home.php'); 
 } 
 ?>

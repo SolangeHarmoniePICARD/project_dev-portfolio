@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 // Verifying form fields
 if(isset($_POST['data_username']) && !empty($_POST['data_username']) 
 && isset($_POST['data_email']) && !empty($_POST['data_email']) 
@@ -21,7 +23,7 @@ if(isset($_POST['data_username']) && !empty($_POST['data_username'])
         $result = $query->fetch();
         //var_dump($result) ;
         if ($result['user_username'] == $user_username) {         
-            $_SESSION['error'] = 'This user already exist.';
+            $_SESSION['message'] = 'This user already exist.';
             header('Location: form-user_registration.php'); 
         } else {
             $sql = 'INSERT INTO table_users(`user_username`, `user_password`, `user_email`) VALUES(:user_username, :user_password, :user_email)';
@@ -32,16 +34,18 @@ if(isset($_POST['data_username']) && !empty($_POST['data_username'])
             $query->execute();
             require_once('db_close.php'); // Closing database access
             // Redirection
-            $_SESSION['success'] = 'Success ! User has been registered.';
+            $_SESSION['message'] = 'Success ! User has been registered.';
             header('Location: form-user_login.php'); 
         }
     //If passwords don\'t match :)
     } else {
-        $_SESSION['error'] = 'Passwords don\'t match.';
+        $_SESSION['message'] = 'Passwords don\'t match.';
         header('Location: form-user_registration.php'); 
     }
 //If the form fields are empty
 }else{
-    $_SESSION['error'] = 'Complete all form fields.';
+    $_SESSION['message'] = 'Complete all form fields.';
     header('Location: form-user_registration.php'); 
 }
+
+// EOF

@@ -1,4 +1,6 @@
-<?php include 'include_header.php';
+<?php 
+
+include 'include_header.php';
 
     $tagNames = array_keys($_POST); 
     $tagParams = array_map(function ($tagName) {    

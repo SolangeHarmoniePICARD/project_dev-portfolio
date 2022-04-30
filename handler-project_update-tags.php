@@ -1,4 +1,7 @@
-<?php session_start();
+<?php 
+
+session_start();
+
 if($_SESSION['username']){
 
     if(isset($_POST['data_submit']) && !empty($_POST['data_submit'])){
@@ -27,7 +30,7 @@ if($_SESSION['username']){
             
             $db->commit();
 
-            $_SESSION['success'] = 'Tags have been updated. ';
+            $_SESSION['message'] = 'Tags have been updated. ';
             header('Location: form-project_edit.php?project_id='.$project_id); 
             
         } catch (\Exception $e) {
@@ -40,10 +43,12 @@ if($_SESSION['username']){
 
         require_once('db_close.php');
     } else {
-        $_SESSION['error'] = "Complete all fields.";
+        $_SESSION['message'] = "Complete all fields.";
         header('Location: view-backoffice_home.php');
     }
 } else {
-    $_SESSION['error'] = "Username or password are incorrect.";
+    $_SESSION['message'] = "Username or password are incorrect.";
     header('Location: index.php');
 }
+
+//EOF
