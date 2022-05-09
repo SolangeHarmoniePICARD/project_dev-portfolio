@@ -31,5 +31,5 @@ if(isset($_POST['data_username']) && !empty($_POST['data_username'])
     }
 } else {
     $_SESSION['message'] = 'Complete all form fields.';
-    header('Location: form-user_registration.php'); 
+    header('Location: form-user_login.php'); 
 }
