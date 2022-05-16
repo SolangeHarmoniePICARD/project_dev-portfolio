@@ -30,7 +30,7 @@
 
     <div>
         <a href="index.php">
-            <button>Back</button>
+            Back
         </a>
     </div>
 
