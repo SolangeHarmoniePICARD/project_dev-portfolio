@@ -59,5 +59,12 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
 </figure>
 <p><?=$result['project_description']?></p>
 <div><a href="view-front_home.php"><button>Back</button></a></div>
+<?php 
+    if(!empty($_SESSION['username'])){
+        echo '<div><a href="view-backoffice_home.php"><button>Back-office</button></a></div>';
+    } else {
+
+    }
+?>
 
 <?php include 'include_footer.php'; ?>
