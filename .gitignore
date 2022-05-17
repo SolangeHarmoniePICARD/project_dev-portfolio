@@ -1,1 +1,6 @@
 db_env.php
+db_env-prod.php
+db_env-dev.php
+uploads/*.png
+uploads/*.jpg
+uploads/*.

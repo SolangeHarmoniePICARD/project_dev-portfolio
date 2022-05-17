@@ -2,7 +2,7 @@
 
 > Replace the contents of the variables with your database connection information in "db_env-template.php" and rename the file to "db_env.php".
 
-> Change permissions of « uploads/ » :
+> Change permissions of « uploads/ » directory :
 ```
 $ sudo chgrp $(id -u) -R uploads/
 $ sudo chown www-data -R uploads/
