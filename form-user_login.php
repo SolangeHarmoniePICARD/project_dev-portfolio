@@ -8,6 +8,7 @@
         <div>
             <label for="input_password">Password: </label>
             <input type="password" class="" id="input_password" name="data_password" required>
+            <input type="checkbox" id="input_show-password"> <span>Show Password</span> 
         </div>
         <div>
             <input type="submit" id="form_submit" value="Log in">
@@ -20,5 +21,7 @@
             <button>Back</button>
         </a>
     </div>
+
+    <script src="form-user_show-password.js"></script>
 
 <?php include 'include_footer.php'; ?>

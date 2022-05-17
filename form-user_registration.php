@@ -34,4 +34,6 @@
         </a>
     </div>
 
+    <script src="form-user_show-password.js"></script>
+
 <?php include 'include_footer.php'; ?>
