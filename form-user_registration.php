@@ -12,10 +12,12 @@
         <div>
             <label for="input_password" class="">Password:</label>
             <input type="password" id="input_password" name="data_password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.">
+            <input type="checkbox" id="input_show-password"> <span>Show Password</span> 
         </div>
         <div>
             <label for="input_pswd-confirmation" class="">Confirm Password:</label>
             <input type="password"  id="input_pswd-confirmation" name="data_pswd-confirmation" required>
+            <input type="checkbox" id="input_show-confirmation"> <span>Show Confirmation</span> 
         </div>
         <div>
             <label for="input_captcha-checker">Captcha:</label>
