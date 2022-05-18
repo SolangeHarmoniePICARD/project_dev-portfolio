@@ -36,6 +36,7 @@
         <p id="verify-capital" class="invalid-fields">A <b>capital (uppercase)</b> letter</p>
         <p id="verify-number" class="invalid-fields">A <b>number</b></p>
         <p id="verify-length" class="invalid-fields">Minimum <b>8 characters</b></p>
+        <p id="verify-match" class="invalid-fields">Passwords must <b>match</b></p>
     </div>
 
     <div>

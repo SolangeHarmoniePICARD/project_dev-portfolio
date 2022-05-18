@@ -3,15 +3,12 @@ let messageValidation = document.getElementById("message-validation")
     verifyCapital = document.getElementById("verify-capital")
     verifyNumber = document.getElementById("verify-number")
     verifyLength = document.getElementById("verify-length")
+    verifyMatch = document.getElementById("verify-match")
 
 
 
 inputPassword.onfocus = function() {
     messageValidation.style.display = "block"
-}
-
-inputPassword.onblur = function() {
-    messageValidation.style.display = "none"
 }
 
 inputPassword.onkeyup = function() {
@@ -56,3 +53,22 @@ inputPassword.onkeyup = function() {
     }
 
   }
+
+  inputConfirmation.onfocus = function() {
+    messageValidation.style.display = "block"
+}
+
+
+inputConfirmation.onkeyup = function() {
+    let matchPassword = document.getElementById("input_password").value
+    matchConfirmation = document.getElementById("input_pswd-confirmation").value
+    // Validate match
+    if(matchPassword != matchConfirmation) {
+        verifyMatch.classList.remove("valid")
+        verifyMatch.classList.add("invalid")
+    } else {
+        verifyMatch.classList.remove("invalid")
+        verifyMatch.classList.add("valid")
+    }
+
+ }

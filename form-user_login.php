@@ -16,14 +16,6 @@
         </div>
     </form>
     
-    <div id="message-validation">
-        <h3>Password must contain the following:</h3>
-        <p id="verify-letter" class="invalid-fields">A <b>lowercase</b> letter</p>
-        <p id="verify-capital" class="invalid-fields">A <b>capital (uppercase)</b> letter</p>
-        <p id="verify-number" class="invalid-fields">A <b>number</b></p>
-        <p id="verify-length" class="invalid-fields">Minimum <b>8 characters</b></p>
-    </div>
-
     <div>
         <a href="index.php">
             <button>Back</button>
