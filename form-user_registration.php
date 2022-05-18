@@ -30,12 +30,21 @@
         </div>
     </form>
 
+    <div id="message-validation">
+        <h3>Password must contain the following:</h3>
+        <p id="verify-letter" class="invalid-fields">A <b>lowercase</b> letter</p>
+        <p id="verify-capital" class="invalid-fields">A <b>capital (uppercase)</b> letter</p>
+        <p id="verify-number" class="invalid-fields">A <b>number</b></p>
+        <p id="verify-length" class="invalid-fields">Minimum <b>8 characters</b></p>
+    </div>
+
     <div>
         <a href="index.php">
             Back
         </a>
     </div>
 
-    <script src="form-user_show-password.js"></script>
+    <script src="form-user_password-visibility.js"></script>
+    <script src="form-user_password-validation.js"></script>
 
 <?php include 'include_footer.php'; ?>
