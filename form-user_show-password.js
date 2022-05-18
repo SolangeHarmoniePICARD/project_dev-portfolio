@@ -8,6 +8,7 @@ document.getElementById("input_show-password").addEventListener('click', functio
     inputPassword.type = "password"
   }
 })
+
 document.getElementById("input_show-confirmation").addEventListener('click', function() {
   if (inputConfirmation.type === "password") {
     inputConfirmation.type = "text"

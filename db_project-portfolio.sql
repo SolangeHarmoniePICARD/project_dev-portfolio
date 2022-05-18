@@ -5,7 +5,12 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-DROP TABLE IF EXISTS `table_projects`;
+-- DROP TABLE IF EXISTS `table_projects`;
+-- DROP TABLE IF EXISTS `table_tags`;
+-- DROP TABLE IF EXISTS `intermediary_tags-to-projects`;
+-- DROP TABLE IF EXISTS `table_users`;
+-- DROP TABLE IF EXISTS `table_contacts`;
+
 CREATE TABLE `table_projects` (
   `project_id` int(11) NOT NULL AUTO_INCREMENT,
   `project_title` varchar(255) NOT NULL,
@@ -14,15 +19,12 @@ CREATE TABLE `table_projects` (
   `project_status` int(11) NOT NULL,
   PRIMARY KEY (`project_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `table_tags`;
 CREATE TABLE `table_tags` (
   `tag_id` int(11) NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(255) NOT NULL,
   PRIMARY KEY (`tag_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `intermediary_tags-to-projects`;
 CREATE TABLE `intermediary_tags-to-projects` (
   `tag-to-project_id` int(11) NOT NULL AUTO_INCREMENT,
   `project_id` int(11) NOT NULL,
@@ -34,7 +36,6 @@ CREATE TABLE `intermediary_tags-to-projects` (
   CONSTRAINT `intermediary_tags-to-projects_ibfk_4` FOREIGN KEY (`tag_id`) REFERENCES `table_tags` (`tag_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `table_users`;
 CREATE TABLE `table_users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_username` varchar(255) NOT NULL,
@@ -43,7 +44,6 @@ CREATE TABLE `table_users` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `table_contacts`;
 CREATE TABLE `table_contacts` (
   `contact_id` int(11) NOT NULL AUTO_INCREMENT,
   `contact_username` varchar(255) NOT NULL,
