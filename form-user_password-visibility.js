@@ -1,7 +1,8 @@
 let inputPassword = document.getElementById("input_password")
     inputConfirmation = document.getElementById("input_pswd-confirmation")
+    warningCapsLock = document.getElementById("warning_capsLock")
 
-  document.getElementById("input_show-password").addEventListener('click', function() {
+document.getElementById("input_show-password").addEventListener('click', function() {
     if (inputPassword.type === "password") {
         inputPassword.type = "text"
     } else {

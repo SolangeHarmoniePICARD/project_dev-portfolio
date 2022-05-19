@@ -9,6 +9,11 @@
     <title>Portfolio</title>
     <style>
 
+        #warning_capsLock {
+            display:none;
+            color:red
+        }
+
         /* The message box is shown when the user clicks on the password field */
         #message-validation {
             display:none;
