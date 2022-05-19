@@ -12,7 +12,7 @@
         <div>
             <label for="input_password" class="">Password:</label>
             <input type="password" id="input_password" name="data_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters." required>
-            <input type="checkbox" id="input_show-password"> <span>Show Password</span> 
+            <input type="checkbox" id="input_show-password"> <span>Show Password</span> <span id="warning_capsLock">WARNING! Caps lock is ON.</span> 
         </div>
         <div>
             <label for="input_pswd-confirmation" class="">Confirm Password:</label>
@@ -48,5 +48,6 @@
 
     <script src="form-user_password-visibility.js"></script>
     <script src="form-user_password-validation.js"></script>
+    <script src="form-user_detect-capslock.js"></script>
 
 <?php include 'include_footer.php'; ?>

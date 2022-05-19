@@ -60,12 +60,11 @@ inputPassword.onkeyup = function() {
       verifyLength.classList.add("invalid")
     }
 
-  }
-
-  inputConfirmation.onfocus = function() {
-    messageValidation.style.display = "block"
 }
 
+inputConfirmation.onfocus = function() {
+    messageValidation.style.display = "block"
+}
 
 inputConfirmation.onkeyup = function() {
     let matchPassword = document.getElementById("input_password").value
@@ -79,7 +78,6 @@ inputConfirmation.onkeyup = function() {
         verifyMatch.classList.remove("invalid")
         verifyMatch.classList.add("valid")
     }
-
- }
+}
 
 
