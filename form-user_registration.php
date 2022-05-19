@@ -3,15 +3,15 @@
     <form name="form_registration" action="handler-user_registration.php" method="post">
         <div>
             <label for="input_username" class="">Username:</label>
-            <input type="text" id="input_username" name="data_username" required minlength="3" title="Must contain at least 3 or more characters.">
+            <input type="text" id="input_username" name="data_username" minlength="3" title="Must contain at least 3 or more characters." spellcheck="false" required>
         </div>
         <div>
             <label for="input_email" class="">Email:</label>
-            <input type="email" id="input_email" name="data_email" required>
+            <input type="email" id="input_email" name="data_email" spellcheck="false" required>
         </div>
         <div>
             <label for="input_password" class="">Password:</label>
-            <input type="password" id="input_password" name="data_password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.">
+            <input type="password" id="input_password" name="data_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters." required>
             <input type="checkbox" id="input_show-password"> <span>Show Password</span> 
         </div>
         <div>

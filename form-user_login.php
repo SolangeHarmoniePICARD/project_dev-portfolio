@@ -3,7 +3,7 @@
     <form action="handler-user_login.php" method="post">
         <div>
             <label for="input_username">Username: </label>
-            <input type="text" class="form-fields" id="input_username" name="data_username" required>
+            <input type="text" class="form-fields" id="input_username" name="data_username" spellcheck="false" required>
         </div>
         <div>
             <label for="input_password">Password: </label>
