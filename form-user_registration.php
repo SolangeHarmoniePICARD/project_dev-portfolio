@@ -1,6 +1,6 @@
 <?php include 'include_header.php'; ?>
 
-    <form action="handler-user_registration.php" method="post">
+    <form name="form_registration" action="handler-user_registration.php" method="post">
         <div>
             <label for="input_username" class="">Username:</label>
             <input type="text" id="input_username" name="data_username" required minlength="3" title="Must contain at least 3 or more characters.">
@@ -32,6 +32,7 @@
 
     <div id="message-validation">
         <h3>Password must contain the following:</h3>
+        <p id="verify-empty" class="invalid-fields">Must not <b>be empty</b></p>
         <p id="verify-letter" class="invalid-fields">A <b>lowercase</b> letter</p>
         <p id="verify-capital" class="invalid-fields">A <b>capital (uppercase)</b> letter</p>
         <p id="verify-number" class="invalid-fields">A <b>number</b></p>

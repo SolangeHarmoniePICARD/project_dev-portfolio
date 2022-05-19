@@ -1,11 +1,4 @@
 let messageValidation = document.getElementById("message-validation")
-    verifyLetter = document.getElementById("verify-letter")
-    verifyCapital = document.getElementById("verify-capital")
-    verifyNumber = document.getElementById("verify-number")
-    verifyLength = document.getElementById("verify-length")
-    verifyMatch = document.getElementById("verify-match")
-
-
 
 inputPassword.onfocus = function() {
     messageValidation.style.display = "block"
@@ -13,8 +6,20 @@ inputPassword.onfocus = function() {
 
 inputPassword.onkeyup = function() {
 
+    // Validate not empty
+    let fieldPassword = document.forms["form_registration"]["data_password"].value
+        verifyEmpty = document.getElementById("verify-empty")
+    if (fieldPassword == "") {
+      verifyEmpty.classList.remove("valid")
+      verifyEmpty.classList.add("invalid")
+    } else {
+      verifyEmpty.classList.remove("invalid")
+      verifyEmpty.classList.add("valid")
+    }
+
     // Validate lowercase letters
-    let lowerCaseLetters = /[a-z]/g;
+    let lowerCaseLetters = /[a-z]/g
+        verifyLetter = document.getElementById("verify-letter")
     if(inputPassword.value.match(lowerCaseLetters)) {  
       verifyLetter.classList.remove("invalid")
       verifyLetter.classList.add("valid")
@@ -24,7 +29,8 @@ inputPassword.onkeyup = function() {
     }
     
     // Validate capital letters
-    let upperCaseLetters = /[A-Z]/g;
+    let upperCaseLetters = /[A-Z]/g
+        verifyCapital = document.getElementById("verify-capital")
     if(inputPassword.value.match(upperCaseLetters)) {  
       verifyCapital.classList.remove("invalid")
       verifyCapital.classList.add("valid")
@@ -34,7 +40,8 @@ inputPassword.onkeyup = function() {
     }
   
     // Validate numbers
-    let numbers = /[0-9]/g;
+    let numbers = /[0-9]/g
+        verifyNumber = document.getElementById("verify-number")
     if(inputPassword.value.match(numbers)) {  
       verifyNumber.classList.remove("invalid")
       verifyNumber.classList.add("valid")
@@ -42,8 +49,9 @@ inputPassword.onkeyup = function() {
       verifyNumber.classList.remove("valid")
       verifyNumber.classList.add("invalid")
     }
-    
+
     // Validate length
+    let verifyLength = document.getElementById("verify-length")
     if(inputPassword.value.length >= 8) {
       verifyLength.classList.remove("invalid")
       verifyLength.classList.add("valid")
@@ -61,7 +69,8 @@ inputPassword.onkeyup = function() {
 
 inputConfirmation.onkeyup = function() {
     let matchPassword = document.getElementById("input_password").value
-    matchConfirmation = document.getElementById("input_pswd-confirmation").value
+        matchConfirmation = document.getElementById("input_pswd-confirmation").value
+        verifyMatch = document.getElementById("verify-match")
     // Validate match
     if(matchPassword != matchConfirmation) {
         verifyMatch.classList.remove("valid")
@@ -72,3 +81,5 @@ inputConfirmation.onkeyup = function() {
     }
 
  }
+
+
