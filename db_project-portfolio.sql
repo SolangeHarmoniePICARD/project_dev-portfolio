@@ -41,7 +41,11 @@ CREATE TABLE `table_users` (
   `user_username` varchar(255) NOT NULL,
   `user_password` varchar(255) NOT NULL,
   `user_email` varchar(255) NOT NULL,
-  PRIMARY KEY (`user_id`)
+  `user_status` int(11) NOT NULL DEFAULT 0,
+  `user_token` varchar(255) NOT NULL,
+  `user_timestamp` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_email` (`user_email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `table_contacts` (
@@ -53,4 +57,4 @@ CREATE TABLE `table_contacts` (
   PRIMARY KEY (`contact_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 2022-04-22 20:51:31
+-- 2022-05-05 09:48:34

@@ -55,7 +55,7 @@ if ($_SESSION["submit_captcha-checker"] == $_POST["data_captcha-checker"]) {
 	            }
 
                 // Redirection
-                $_SESSION['message'] = 'Success ! User has been registered.';
+                $_SESSION['message'] = 'Success ! User has been registered: verify your email adress.';
                 header('Location: index.php'); 
             }
 

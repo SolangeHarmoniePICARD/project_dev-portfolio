@@ -17,11 +17,15 @@ if($_GET['user-token']){
         $query->execute();
         require_once('db_close.php'); // Closing database access
 
-        echo "Ok, your registration is complete.";
+        $_SESSION['message'] = "Ok, your registration is complete.";
+        header('Location: form-user_login.php'); 
     
 
 } else {
-    echo "There is a problem..." ;
+
+        $_SESSION['message'] =  "There is a problem..." ;
+        header('Location: index.php'); 
+
  }
 
  // EOF
