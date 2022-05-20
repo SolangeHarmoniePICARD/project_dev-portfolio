@@ -43,7 +43,7 @@ CREATE TABLE `table_users` (
   `user_email` varchar(255) NOT NULL,
   `user_status` int(11) NOT NULL DEFAULT 0,
   `user_token` varchar(255) NOT NULL,
-  `user_timestamp` timestamp NULL DEFAULT NULL,
+  `user_timestamp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_email` (`user_email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
