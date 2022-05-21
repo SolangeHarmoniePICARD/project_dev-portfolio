@@ -4,7 +4,7 @@
 
     if($_SESSION['username']){
 
-        echo 'User:' . $_SESSION['username'] ;
+        echo 'User: ' . $_SESSION['username'] ;
 
         if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
 
@@ -76,9 +76,9 @@
 
 <p> 
     <span>Tag(s) :</span>
-    <form action="handler-project_update-tags.php" method="post">
+    <form id="form_project-edit" action="handler-project_update-tags.php" method="post">
         <input type="hidden" name="project_id" value='<?= $project['project_id'] ?>'>
-        <input type="submit" value="Change Tags"> &nbsp;
+        <input type="submit" name="data_submit" value="Change Tags"> &nbsp;
         <?php     
             $tags_id_array = array();
             foreach($intermediary_tags as $intermediary_tag){
@@ -119,5 +119,7 @@
         <button>Back</button>
     </a>
 </p>
+
+<script src="form-project_checkbox-checked.js"></script>
 
 <?php include 'include_footer.php'; ?>

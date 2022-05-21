@@ -4,7 +4,7 @@
     
     if($_SESSION['username']){
 
-        echo 'User:' . $_SESSION['username'] ;
+        echo 'User: ' . $_SESSION['username'] ;
 
         require_once('db_connect.php');
         // Checking existence of the id sent by url
@@ -29,9 +29,7 @@
     
 ?>
 
-
-
-<form action="handler-project_add.php" method="post" enctype="multipart/form-data">
+<form id="form_project-edit" action="handler-project_add.php" method="post" enctype="multipart/form-data">
     <p>
         <label for="input_title">Title: </label>
         <input type="text" id="input_title" name="data_title" required>
@@ -60,4 +58,7 @@
         <button>Back</button>
     </a>
 </p>
+
+<script src="form-project_checkbox-checked.js"></script>
+
 <?php include 'include_footer.php'; ?>

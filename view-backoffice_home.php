@@ -4,7 +4,7 @@ include 'include_header.php';
 
 if($_SESSION['username']){
 
-    echo 'User:' . $_SESSION['username'] ;
+    echo 'User: ' . $_SESSION['username'] ;
 
     require_once('db_connect.php');
     $sql = 'SELECT *, GROUP_CONCAT(`tag_name`) AS `tag_results`

@@ -3,7 +3,7 @@
     include 'include_header.php';
 
     if($_SESSION['username']){
-        echo 'User:' . $_SESSION['username'] ;
+        echo 'User: ' . $_SESSION['username'] ;
     } else {
         $_SESSION['message'] = 'You are not connected! Please log in!';
         header('Location: form-user_login.php'); 
