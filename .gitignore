@@ -1,6 +1,9 @@
+# Database
 db_env.php
 db_env-prod.php
 db_env-dev.php
+
+# Uploaded Images
 uploads/*.png
 uploads/*.jpg
 uploads/*.

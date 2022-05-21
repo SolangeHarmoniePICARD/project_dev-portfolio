@@ -30,7 +30,7 @@
     </form>
 
     <div id="message-validation">
-        <h3>Password must contain the following:</h3>
+        <strong>Password must contain the following:</strong>
         <p id="verify-empty" class="invalid-fields">Must not <b>be empty</b></p>
         <p id="verify-letter" class="invalid-fields">A <b>lowercase</b> letter</p>
         <p id="verify-capital" class="invalid-fields">A <b>capital (uppercase)</b> letter</p>

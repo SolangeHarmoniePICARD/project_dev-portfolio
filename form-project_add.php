@@ -6,7 +6,15 @@
     $tags = $query->fetchAll(PDO::FETCH_ASSOC);
     require_once('db_close.php'); // Closing database access
     // var_dump($tags) ;
+    
+    if(empty($tags)){
+        $_SESSION['message'] = 'Impossible to add a new project: you have to create tags first.';
+        header('Location: view-backoffice_home.php');      
+    }
 ?>
+
+
+
 <form action="handler-project_add.php" method="post" enctype="multipart/form-data">
     <p>
         <label for="input_title">Title: </label>
@@ -29,7 +37,6 @@
     <p >
         <input type="hidden" value='0' name="data_status" id="input_status">
         <input type="submit" value="Add Project" name="data_submit"  id="input_submit">
-        <input type="reset" value="Reset">
     </p>
 </form>
 <p>

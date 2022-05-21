@@ -17,6 +17,7 @@ CREATE TABLE `table_projects` (
   `project_title` varchar(255) NOT NULL,
   `project_description` text NOT NULL,
   `project_thumbnail` varchar(255) NOT NULL,
+  `project_author` varchar(255) NOT NULL,
   `project_status` int(11) NOT NULL,
   PRIMARY KEY (`project_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -68,4 +69,4 @@ CREATE TABLE `table_contacts` (
   PRIMARY KEY (`contact_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 2022-05-05 09:48:34
+-- 2022-05-21 08:19:09

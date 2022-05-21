@@ -17,8 +17,6 @@
         /* The message box is shown when the user clicks on the password field */
         #message-validation {
             display:none;
-            background: #f1f1f1;
-            color: #000;
             position: relative;
             padding: 20px;
             margin-top: 10px;
