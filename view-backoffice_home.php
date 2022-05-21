@@ -1,5 +1,11 @@
-<?php include 'include_header.php';
+<?php 
+
+include 'include_header.php';
+
 if($_SESSION['username']){
+
+    echo 'User:' . $_SESSION['username'] ;
+
     require_once('db_connect.php');
     $sql = 'SELECT *, GROUP_CONCAT(`tag_name`) AS `tag_results`
     FROM `table_projects` 
@@ -29,7 +35,14 @@ if($_SESSION['username']){
     $query->execute();
     $intermediary_tags = $query->fetchAll(PDO::FETCH_ASSOC);
     require_once('db_close.php'); // Closing database access
+
+} else {
+
+    $_SESSION['message'] = 'You are not connected! Please log in!';
+    header('Location: form-user_login.php'); 
+
 }
+
 ?>
 
 <?php foreach($projects as $project){ ?>

@@ -49,8 +49,11 @@
 <body>
 
 <?php
+
     if(!empty($_SESSION['message'])){
         echo '<p>'.$_SESSION['message'].'</p>';
         $_SESSION['message'] = ''; // Cleaning the superglobal variable
-    } 
+    }
+
+
 ?>

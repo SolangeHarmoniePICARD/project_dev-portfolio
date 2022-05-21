@@ -1,42 +1,64 @@
-<?php include 'include_header.php'; 
-if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
-    $project_id = strip_tags($_GET['project_id']);
-    require_once('db_connect.php');
+<?php 
 
-    $sql = 'SELECT * FROM `table_projects` WHERE `project_id` = :project_id';
-    $query = $db->prepare($sql);
-    $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
-    $query->execute();
-    $project = $query->fetch();
+    include 'include_header.php';
 
-    $sql = 'SELECT * FROM `table_tags`';
-    $query = $db->prepare($sql);
-    $query->execute();
-    $tags = $query->fetchAll(PDO::FETCH_ASSOC);
+    if($_SESSION['username']){
 
-    $sql = 'SELECT * FROM `table_projects` 
-    JOIN `intermediary_tags-to-projects` 
-    ON `table_projects`.`project_id` = `intermediary_tags-to-projects`.`project_id` 
-    JOIN `table_tags` 
-    ON `intermediary_tags-to-projects`.`tag_id` = `table_tags`.`tag_id`';
-    $query = $db->prepare($sql);
-    $query->execute();
-    $intermediary_tags = $query->fetchAll(PDO::FETCH_ASSOC);
+        echo 'User:' . $_SESSION['username'] ;
+
+        if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
+
+            $project_id = strip_tags($_GET['project_id']);
     
-    require_once('db_close.php'); // Closing database access
-    // var_dump($project) ;
-    // echo $project['project_id'];
-    if ($project['project_id'] != $project_id) {
-        $_SESSION['message'] = 'This ID doesn\'t exist.';
-        header('Location: view-backoffice_home.php');
-    } else if ($project) {
-        echo '<div>Ok, you can edit this project.</div>';
+            require_once('db_connect.php');
+    
+            $sql = 'SELECT * FROM `table_projects` WHERE `project_id` = :project_id';
+            $query = $db->prepare($sql);
+            $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
+            $query->execute();
+            $project = $query->fetch();
+    
+            $sql = 'SELECT * FROM `table_tags`';
+            $query = $db->prepare($sql);
+            $query->execute();
+            $tags = $query->fetchAll(PDO::FETCH_ASSOC);
+    
+            $sql = 'SELECT * FROM `table_projects` 
+            JOIN `intermediary_tags-to-projects` 
+            ON `table_projects`.`project_id` = `intermediary_tags-to-projects`.`project_id` 
+            JOIN `table_tags` 
+            ON `intermediary_tags-to-projects`.`tag_id` = `table_tags`.`tag_id`';
+            $query = $db->prepare($sql);
+            $query->execute();
+            $intermediary_tags = $query->fetchAll(PDO::FETCH_ASSOC);
+            
+            require_once('db_close.php'); // Closing database access
+    
+            // var_dump($project) ;
+            // echo $project['project_id'];
+    
+            if ($project['project_id'] != $project_id) {
+                $_SESSION['message'] = 'This ID doesn\'t exist.';
+                header('Location: view-backoffice_home.php');
+            } else if ($project) {
+                echo '<div>Ok, you can edit this project.</div>';
+            }
+    
+        } else {
+    
+            $_SESSION['message'] = 'URL is not valid...';
+            header('Location: view-backoffice_home.php'); 
+    
+        } 
+
+    } else {
+
+        $_SESSION['message'] = 'You are not connected! Please log in!';
+        header('Location: form-user_login.php'); 
+
     }
-//If there is no id
-} else {
-    $_SESSION['message'] = 'URL is not valid...';
-    header('Location: view-backoffice_home.php'); 
-} 
+
+
 ?>
 
 <figure>

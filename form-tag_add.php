@@ -1,4 +1,16 @@
-<?php include 'include_header.php'; ?>
+<?php 
+
+    include 'include_header.php';
+
+    if($_SESSION['username']){
+        echo 'User:' . $_SESSION['username'] ;
+    } else {
+        $_SESSION['message'] = 'You are not connected! Please log in!';
+        header('Location: form-user_login.php'); 
+    }
+    
+?>
+
 <form action="handler-tag_add.php" method="post">
     <div>
         <label for="input_tag-name">Tag Name:</label>
@@ -13,4 +25,9 @@
         <button>Back</button>
     </a>
 </div>
-<?php include 'include_footer.php'; ?>
+
+<?php
+
+    include 'include_footer.php'; 
+    
+?>

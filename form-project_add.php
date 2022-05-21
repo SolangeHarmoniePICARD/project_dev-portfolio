@@ -1,16 +1,32 @@
-<?php include 'include_header.php';     require_once('db_connect.php');
-    // Checking existence of the id sent by url
-    $sql = 'SELECT * FROM `table_tags`';
-    $query = $db->prepare($sql);
-    $query->execute();
-    $tags = $query->fetchAll(PDO::FETCH_ASSOC);
-    require_once('db_close.php'); // Closing database access
-    // var_dump($tags) ;
+<?php 
+
+    include 'include_header.php';   
     
-    if(empty($tags)){
-        $_SESSION['message'] = 'Impossible to add a new project: you have to create tags first.';
-        header('Location: view-backoffice_home.php');      
+    if($_SESSION['username']){
+
+        echo 'User:' . $_SESSION['username'] ;
+
+        require_once('db_connect.php');
+        // Checking existence of the id sent by url
+        $sql = 'SELECT * FROM `table_tags`';
+        $query = $db->prepare($sql);
+        $query->execute();
+        $tags = $query->fetchAll(PDO::FETCH_ASSOC);
+        require_once('db_close.php'); // Closing database access
+        // var_dump($tags) ;
+        
+        if(empty($tags)){
+            $_SESSION['message'] = 'Impossible to add a new project: you have to create tags first.';
+            header('Location: view-backoffice_home.php');      
+        }
+
+    } else {
+
+        $_SESSION['message'] = 'You are not connected! Please log in!';
+        header('Location: form-user_login.php'); 
+        
     }
+    
 ?>
 
 

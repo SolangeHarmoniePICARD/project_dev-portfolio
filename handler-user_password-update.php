@@ -18,7 +18,7 @@ if($_GET['user-email']){
 
     // Redirection
     $_SESSION['message'] = 'Password updated.';
-    header('Location: index.php'); 
+    header('Location: form-user_login.php'); 
 
 //If the form fields are empty
 } else {

@@ -2,6 +2,10 @@
 
 include 'include_header.php';
 
+if($_SESSION['username']){
+
+    echo 'User:' . $_SESSION['username'] ;
+
     $tagNames = array_keys($_POST); 
     $tagParams = array_map(function ($tagName) {    
         return "`tag_ids` LIKE :$tagName";    
@@ -38,6 +42,15 @@ include 'include_header.php';
                 echo '<div>Project «&nbsp;'.$project['project_title'].'&nbsp;»:&nbsp;'.$project['tag_results'] ;
             }
         }   
+
+} else {
+
+    $_SESSION['message'] = 'You are not connected! Please log in!';
+    header('Location: form-user_login.php'); 
+
+}
+
+
  
 
     

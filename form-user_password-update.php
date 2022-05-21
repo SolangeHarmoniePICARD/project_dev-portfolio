@@ -1,9 +1,13 @@
-<?php include 'include_header.php'; ?>
+<?php 
 
-<?php
-if($_GET['user-email']){
-    $user_email = strip_tags($_GET['user-email']);
-}
+    include 'include_header.php';
+
+    if($_GET['user-email']){
+        $user_email = strip_tags($_GET['user-email']);
+    } else {
+        $_SESSION['message'] = 'There is a problem!';
+        header('Location: form-user_login.php'); 
+    }
 
 ?>
 

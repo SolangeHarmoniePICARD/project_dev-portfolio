@@ -2,6 +2,10 @@
 
 session_start();
 
+if($_SESSION['username']){
+
+    echo 'User:' . $_SESSION['username'] ;
+    
     if (isset($_GET['tag_id']) && !empty($_GET['tag_id'])) {
         require_once('db_connect.php');
         $tag_id = $_GET['tag_id'];
@@ -26,5 +30,14 @@ session_start();
         $_SESSION['message'] = "URL is not valid...";
         header('Location: view-backoffice_tags-manager.php'); 
     }
+
+} else {
+
+    $_SESSION['message'] = 'You are not connected! Please log in!';
+    header('Location: form-user_login.php'); 
+
+}
+
+
 
 // EOF
