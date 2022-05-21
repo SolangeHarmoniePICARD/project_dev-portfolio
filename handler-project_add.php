@@ -10,6 +10,7 @@ if($_SESSION['username']){
         $project_title = strip_tags($_POST['data_title']);
         $project_description = strip_tags($_POST['data_description']);
         $project_status = strip_tags($_POST['data_status']);
+        $project_author = strip_tags($_SESSION['username']);
 
         $project_directoryUploads = 'uploads/';
         $project_thumbnail = $project_directoryUploads . 'thumbnail_' .time() . '_' . basename($_FILES['data_thumbnail']['name']);
@@ -74,11 +75,12 @@ if($_SESSION['username']){
                 $query->execute();
                 $tags = $query->fetchAll(PDO::FETCH_ASSOC);
                 
-                $sql = 'INSERT INTO `table_projects` (`project_title`, `project_description`, `project_thumbnail`, `project_status`) VALUES (:project_title, :project_description, :project_thumbnail, :project_status)';
+                $sql = 'INSERT INTO `table_projects` (`project_title`, `project_description`, `project_thumbnail`, `project_author`, `project_status`) VALUES (:project_title, :project_description, :project_thumbnail, :project_author, :project_status)';
                 $query = $db->prepare($sql);
                 $query->bindValue(':project_title', $project_title, PDO::PARAM_STR);
                 $query->bindValue(':project_description', $project_description, PDO::PARAM_STR);
                 $query->bindValue(':project_thumbnail', $project_thumbnail, PDO::PARAM_STR);
+                $query->bindValue(':project_author', $project_author, PDO::PARAM_STR);
                 $query->bindValue(':project_status', $project_status, PDO::PARAM_STR);
                 $query->execute();
                 $project_id = $db->lastInsertId();

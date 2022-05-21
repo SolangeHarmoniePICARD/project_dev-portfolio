@@ -46,7 +46,7 @@ if ($_SESSION["submit_captcha-checker"] == $_POST["data_captcha-checker"]) {
                 $query->execute();
                 require_once('db_close.php'); // Closing database access
 
-                $user_link = "https://bdebot-dev.com/feature_email-confirmation/handler-user_email-verification.php?user-token=" . $user_token ;
+                $user_link = "http://localhost/project_dev-portfolio/handler-user_email-verification.php?user-token=" . $user_token ;
                 $mail_headers = "From: " . "bdebot.dev@gmail.com" . "<" .  $user_email . ">\r\n";
                 if(mail($user_email, 'Email confirmation', "Click to verify your Email: " . $user_link, $mail_headers)) {
                     $_SESSION['success'] = "Register done: please check your mail.";
