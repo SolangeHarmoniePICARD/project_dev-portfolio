@@ -12,13 +12,15 @@
         </div>
         <div>
             <input type="submit" id="form_submit" value="Log in">
-            <input type="reset" value="Reset">
         </div>
     </form>
     
     <div>
         <a href="index.php">
             <button>Back</button>
+        </a>
+        <a href="form-user_send-link.php">
+            <button>Forgot password?</button>
         </a>
     </div>
 

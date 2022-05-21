@@ -6,7 +6,6 @@
     </div>
     <div >
         <input type="submit" value="Add a new tag">
-        <input type="reset" value="Reset">
     </div>
 </form>
 <div>

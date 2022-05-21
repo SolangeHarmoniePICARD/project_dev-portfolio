@@ -89,7 +89,6 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     </div>
     <div>
         <input type="submit" id="form_submit" value="Edit Project">
-        <input type="reset" value="Reset">
     </div>
 </form>
 

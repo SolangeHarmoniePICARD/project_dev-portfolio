@@ -26,7 +26,6 @@
         <div>
         <div>
             <input type="submit" id="form_submit" value="Sign up">
-            <input type="reset" value="Reset">
         </div>
     </form>
 
@@ -41,9 +40,9 @@
     </div>
 
     <div>
-        <a href="index.php">
-            Back
-        </a>
+        
+            <button><a href="index.php">Back</a></button>
+        
     </div>
 
     <script src="form-user_password-visibility.js"></script>
