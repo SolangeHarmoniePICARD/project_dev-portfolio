@@ -9,6 +9,7 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 -- DROP TABLE IF EXISTS `table_tags`;
 -- DROP TABLE IF EXISTS `intermediary_tags-to-projects`;
 -- DROP TABLE IF EXISTS `table_users`;
+-- DROP TABLE IF EXISTS `table_reset`;
 -- DROP TABLE IF EXISTS `table_contacts`;
 
 CREATE TABLE `table_projects` (
@@ -19,6 +20,7 @@ CREATE TABLE `table_projects` (
   `project_status` int(11) NOT NULL,
   PRIMARY KEY (`project_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `table_tags` (
   `tag_id` int(11) NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(255) NOT NULL,
@@ -46,6 +48,15 @@ CREATE TABLE `table_users` (
   `user_timestamp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_email` (`user_email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `table_reset` (
+  `reset_id` int(11) NOT NULL AUTO_INCREMENT,
+  `reset_token` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`reset_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `table_reset_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `table_users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `table_contacts` (
