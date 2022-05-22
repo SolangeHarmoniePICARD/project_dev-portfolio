@@ -35,8 +35,8 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     ON `intermediary_authors-to-projects`.`user_id` = `table_users`.`user_id`';
     $query = $db->prepare($sql);
     $query->execute();
-    $author = $query->fetch();
-    //print_r($author);
+    $authors = $query->fetchAll(PDO::FETCH_ASSOC);
+    // print_r($authors);
 
     require_once('db_close.php'); // Closing database access
 
@@ -56,7 +56,15 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
 ?>
 
 <h1> <?= $project['project_title'] ?> </h1>
-<h2> <?= $author['user_username'] ?> </h2>
+<h2> 
+    <?php
+            foreach($authors as $author){
+                if ($author['project_id'] ==  $project_id ) {
+                    echo $author['user_username'];
+                }
+            }
+    ?>
+</h2>
 <p>
 <?php
     //print_r($intermediary_tags );
