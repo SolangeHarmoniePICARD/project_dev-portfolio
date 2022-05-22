@@ -7,7 +7,7 @@ if(isset($_POST['data_username']) && !empty($_POST['data_username'])
 
     require_once('db_connect.php');
 
-    $sql = 'SELECT user_id, user_username, user_password FROM table_users WHERE user_username = :user_username';
+    $sql = 'SELECT user_id, user_username, user_password, user_status FROM table_users WHERE user_username = :user_username';
     $query = $db->prepare($sql);
     $query->execute(array('user_username' => $_POST['data_username']));
     $result = $query->fetch();
@@ -22,6 +22,7 @@ if(isset($_POST['data_username']) && !empty($_POST['data_username'])
     } else if ($result['user_status'] == 0) {
 
         $_SESSION['message'] = 'You must click on the link you received by email to activate your account.';
+        // print_r($result);
         header('Location: form-user_login.php'); 
 
     } else {
