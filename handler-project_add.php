@@ -70,20 +70,32 @@ if($_SESSION['username']){
 
                 require_once('db_connect.php');
 
+                $sql = 'SELECT user_id, user_username FROM table_users WHERE user_username = :user_username';
+                $query = $db->prepare($sql);
+                $query->bindValue(':user_username', $project_author, PDO::PARAM_STR);
+                $query->execute();
+                $user = $query->fetch();
+                print_r($user);
+
                 $sql = 'SELECT * FROM `table_tags`';
                 $query = $db->prepare($sql);
                 $query->execute();
                 $tags = $query->fetchAll(PDO::FETCH_ASSOC);
                 
-                $sql = 'INSERT INTO `table_projects` (`project_title`, `project_description`, `project_thumbnail`, `project_author`, `project_status`) VALUES (:project_title, :project_description, :project_thumbnail, :project_author, :project_status)';
+                $sql = 'INSERT INTO `table_projects` (`project_title`, `project_description`, `project_thumbnail`, `project_status`) VALUES (:project_title, :project_description, :project_thumbnail, :project_status)';
                 $query = $db->prepare($sql);
                 $query->bindValue(':project_title', $project_title, PDO::PARAM_STR);
                 $query->bindValue(':project_description', $project_description, PDO::PARAM_STR);
                 $query->bindValue(':project_thumbnail', $project_thumbnail, PDO::PARAM_STR);
-                $query->bindValue(':project_author', $project_author, PDO::PARAM_STR);
                 $query->bindValue(':project_status', $project_status, PDO::PARAM_STR);
                 $query->execute();
                 $project_id = $db->lastInsertId();
+
+                $sql = 'INSERT INTO `intermediary_authors-to-projects` (`project_id`, `user_id`) VALUES (:project_id, :user_id)';
+                $query = $db->prepare($sql);
+                $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
+                $query->bindValue(':user_id', $user['user_id'], PDO::PARAM_INT);
+                $query->execute();
 
                 $sql = 'INSERT INTO `intermediary_tags-to-projects` (`project_id`, `tag_id`) VALUES (:project_id, :tag_id)';
                 $query = $db->prepare($sql);
