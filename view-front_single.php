@@ -4,15 +4,15 @@
 
 if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
 
+    $project_id = strip_tags($_GET['project_id']);
+
     require_once('db_connect.php');
 
-    $project_id = strip_tags($_GET['project_id']);
-    // Checking existence of the id sent by url
     $sql = 'SELECT * FROM `table_projects` WHERE `project_id` = :project_id';
     $query = $db->prepare($sql);
     $query->bindValue(':project_id', $project_id, PDO::PARAM_INT);
     $query->execute();
-    $result = $query->fetch();
+    $project = $query->fetch();
 
     $sql = 'SELECT * FROM `table_tags`';
     $query = $db->prepare($sql);
@@ -28,22 +28,35 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
     $query->execute();
     $intermediary_tags = $query->fetchAll(PDO::FETCH_ASSOC);
 
+    $sql = 'SELECT * FROM `table_projects`
+    JOIN `intermediary_authors-to-projects` 
+    ON `table_projects`.`project_id` = `intermediary_authors-to-projects`.`project_id` 
+    JOIN `table_users` 
+    ON `intermediary_authors-to-projects`.`user_id` = `table_users`.`user_id`';
+    $query = $db->prepare($sql);
+    $query->execute();
+    $author = $query->fetch();
+    //print_r($author);
+
     require_once('db_close.php'); // Closing database access
 
-    if (!$result) {
+    if (!$project) {
         $_SESSION['message'] = 'This ID doesn\'t exist.';
         header('Location: view-front_home.php'); 
     }
 
-//If there is no id
+
 } else {
+
     $_SESSION['message'] = 'URL is not valid...';
     header('Location: view-front_home.php'); 
+
 }
 
 ?>
 
-<h1><?=$result['project_title']?> </h1>
+<h1> <?= $project['project_title'] ?> </h1>
+<h2> <?= $author['user_username'] ?> </h2>
 <p>
 <?php
     //print_r($intermediary_tags );
@@ -55,9 +68,9 @@ if (isset($_GET['project_id']) && !empty($_GET['project_id'])) {
 ?>
 </p>
 <figure>
-    <img src="<?=$result['project_thumbnail']?>" alt="The thumbnail of the project <?=$result['project_title']?>.">
+    <img src="<?=$project['project_thumbnail']?>" alt="The thumbnail of the project <?=$project['project_title']?>.">
 </figure>
-<p><?=$result['project_description']?></p>
+<p><?=$project['project_description']?></p>
 <div><a href="view-front_home.php"><button>Back</button></a></div>
 <?php 
     if(!empty($_SESSION['username'])){
