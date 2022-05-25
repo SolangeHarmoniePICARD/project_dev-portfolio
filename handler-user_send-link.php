@@ -29,7 +29,7 @@ if(!$result){
     require_once('db_close.php');
 
     $user_email = $result['user_email'];
-    $user_link = "https://bdebot-dev.com/feature_reset-password/handler-user_check-token.php?user-email=" . $user_email . "&user-token=" . $user_token ;
+    $user_link = "http://localhost/project_dev-portfolio/handler-user_check-token.php?user-email=" . $user_email . "&user-token=" . $user_token ;
     $mail_headers = "From: " . "bdebot-dev@proton.me" . "<" .  $user_email . ">\r\n";
     if(mail($user_email, 'Update password', "Click to update your password: " . $user_link, $mail_headers)) {
         $_SESSION['message'] = "Please check your mail for updating your password.";
