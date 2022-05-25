@@ -31,6 +31,15 @@
             $query = $db->prepare($sql);
             $query->execute();
             $intermediary_tags = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $sql = 'SELECT * FROM `table_projects`
+            JOIN `intermediary_authors-to-projects` 
+            ON `table_projects`.`project_id` = `intermediary_authors-to-projects`.`project_id` 
+            JOIN `table_users` 
+            ON `intermediary_authors-to-projects`.`user_id` = `table_users`.`user_id`';
+            $query = $db->prepare($sql);
+            $query->execute();
+            $authors = $query->fetchAll(PDO::FETCH_ASSOC);
             
             require_once('db_close.php'); // Closing database access
     
@@ -58,8 +67,20 @@
 
     }
 
-
 ?>
+
+<p> 
+    <span>Author:</span>
+    <strong>
+        <?php
+                foreach($authors as $author){
+                    if ($author['project_id'] ==  $project_id ) {
+                        echo $author['user_username'];
+                    }
+                }
+        ?>
+    </strong>
+<p>
 
 <figure>
     <img src="<?= $project['project_thumbnail'] ?>" alt="Thumbnail of the project <?= $project['project_title'] ?>">
