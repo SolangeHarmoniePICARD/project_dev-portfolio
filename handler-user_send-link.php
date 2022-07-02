@@ -29,9 +29,11 @@ if(!$result){
     require_once('db_close.php');
 
     $user_email = $result['user_email'];
-    $user_link = "http://localhost/project_dev-portfolio/handler-user_check-token.php?user-email=" . $user_email . "&user-token=" . $user_token ;
+    $user_link = "<a href='http://localhost/project_dev-portfolio/handler-user_check-token.php?user-email=" . $user_email . "&user-token=" . $user_token ."'>Click here to update your password.</a>" ;
     $mail_headers = "From: " . "bdebot-dev@proton.me" . "<" .  $user_email . ">\r\n";
-    if(mail($user_email, 'Update password', "Click to update your password: " . $user_link, $mail_headers)) {
+    $mail_headers .= 'MIME-Version: 1.0' . "\r\n";
+    $mail_headers .= 'Content-Type: text/html; charset=utf-8' . "\r\n";
+    if(mail($user_email, 'Update password', $user_link, $mail_headers)) {
         $_SESSION['message'] = "Please check your mail for updating your password.";
     } else {
         $_SESSION['message'] = "There is a problem.";
