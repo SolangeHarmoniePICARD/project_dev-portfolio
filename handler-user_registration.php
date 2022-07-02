@@ -48,6 +48,8 @@ if ($_SESSION["submit_captcha-checker"] == $_POST["data_captcha-checker"]) {
 
                 $user_link = "http://localhost/project_dev-portfolio/handler-user_email-verification.php?user-token=" . $user_token ;
                 $mail_headers = "From: " . "bdebot.dev@gmail.com" . "<" .  $user_email . ">\r\n";
+                $mail_headers .= 'MIME-Version: 1.0' . "\r\n";
+                $mail_headers .= 'Content-Type: text/html; charset=utf-8' . "\r\n";
                 if(mail($user_email, 'Email confirmation', "Click to verify your Email: " . $user_link, $mail_headers)) {
                     $_SESSION['success'] = "Register done: please check your mail.";
                 } else {

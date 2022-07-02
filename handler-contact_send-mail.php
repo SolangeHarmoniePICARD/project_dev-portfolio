@@ -24,6 +24,8 @@ session_start();
 
 		$mail_recipient  = "bdebot-dev@outlook.com";
 		$mail_headers = "From: " . $contact_username . "<". $contact_email .">\r\n";
+		$mail_headers .= 'MIME-Version: 1.0' . "\r\n";
+		$mail_headers .= 'Content-Type: text/html; charset=utf-8' . "\r\n";
 		if(mail($mail_recipient, $contact_subject, $contact_message, $mail_headers)) {
 			$_SESSION['message'] = "Message sent!";
 		} else {
